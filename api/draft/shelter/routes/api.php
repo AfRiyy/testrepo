@@ -39,3 +39,14 @@ Route::post('/pets',function(){
         'picturePath'=>request("picturePath"),
     ]);
 });
+
+Route::put('/pets/{pet}',function(Pets $pet){
+     $pet->update([
+        'name'=>request("name"),
+        'species'=>request("species"),
+        'age'=>request("age"),
+        'gender'=>request("gender"),
+        'adopted'=>request("adopted"),
+        'picturePath'=>request("picturePath"),
+    ]);
+});
