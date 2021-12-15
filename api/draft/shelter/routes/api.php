@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pets;
+use App\Http\PetsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,36 +18,4 @@ use App\Models\Pets;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/pets',function(){
-    return Pets::all();
-});
-
-Route::post('/pets',function(){
-    request()->validate([
-        'name'=>'required',
-        'species'=>'required',
-        'age'=>'required',
-        'gender'=>'required',
-        'adopted'=>'required',
-        'picturePath'=>'required',
-    ]);
-    return Pets::create([
-        'name'=>request("name"),
-        'species'=>request("species"),
-        'age'=>request("age"),
-        'gender'=>request("gender"),
-        'adopted'=>request("adopted"),
-        'picturePath'=>request("picturePath"),
-    ]);
-});
-
-Route::put('/pets/{pet}',function(Pets $pet){
-     $pet->update([
-        'name'=>request("name"),
-        'species'=>request("species"),
-        'age'=>request("age"),
-        'gender'=>request("gender"),
-        'adopted'=>request("adopted"),
-        'picturePath'=>request("picturePath"),
-    ]);
-});
+Route::get('/pets,',[PetsController::class, 'index']);
