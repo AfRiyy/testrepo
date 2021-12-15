@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Pets;
 class PetsController extends Controller
 {
-    function index(){
-        
-    }
-    function create(){
-
-    }
-    function edit($Pet){
-
+    public function index(){
+        $pets = Pets::all();
+        return $pets;
     }
 }
 

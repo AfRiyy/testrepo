@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pets;
-use App\Http\PetsController;
+use App\Http\Controllers\PetsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,4 +18,4 @@ use App\Http\PetsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/pets,',[PetsController::class, 'index']);
+Route::get('/pets',[PetsController::class,'index']);
