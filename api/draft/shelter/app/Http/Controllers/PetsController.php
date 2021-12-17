@@ -28,5 +28,30 @@ class PetsController extends Controller
             'picturePath'=>request("picturePath"),
         ]);
     }
+    public function update(Request $request, $id){
+        $query = Pets::find($id)->update([
+                'name'=>request("name"),
+                'species'=>request("species"),
+                'age'=>request("age"),
+                'gender'=>request("gender"),
+                'adopted'=>request("adopted"),
+                'picturePath'=>request("picturePath"),
+        ]);
+        if($query){
+        return response()->json([
+            'status'=>'successful',
+            'id:'=>$id,
+            'message' => 'Pet sucessfully updated!'
+        ]);
+        }
+        else{
+            $returnData = array(
+                'status' => 'error',
+                'id:'=>$id,
+                'message' => 'An error occurred!'
+            );
+            return response()->json($returnData, 500);
+        }
+    }
 }
 
