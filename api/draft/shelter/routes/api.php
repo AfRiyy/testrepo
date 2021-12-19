@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/pets',[PetsController::class,'index']);
 Route::post('/pets',[PetsController::class,'create']);
 Route::put('/pets/{pet}',[PetsController::class,'update']);
+Route::delete('/pets/{pet}',[PetsController::class,'delete']);
