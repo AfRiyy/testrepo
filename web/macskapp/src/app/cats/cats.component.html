@@ -11,7 +11,7 @@ style="
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
-  <table class="table">
+  <!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">Név</th>
@@ -31,43 +31,17 @@ style="
       </tr>
 
     </tbody>
-  </table>
+  </table> -->
 
-  <!-- <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text"></p>
-        </div>
+  <div class="card-deck row">
+    <div class="card col-lg-4 p-2" *ngFor="let cat of cats" >
+      <img src= "../../assets/cat2.jpg" class="card-img-top" alt="Card image cap">
+      
+      <div class="card-body" >
+        
+        <h5 class="card-title">{{cat.name}}</h5>
+        <p class="card-text">{{cat.age}}</p>
+        <p class="card-text">{{cat.gender}}</p>
       </div>
     </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  </div>

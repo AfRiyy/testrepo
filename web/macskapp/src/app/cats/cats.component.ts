@@ -15,8 +15,8 @@ export class CatsComponent implements OnInit {
     species = '';
     age = 0;
     gender = '';
-  
-    constructor() { }
+    picturePath='';
+
   
     ngOnInit(): void {
       fetch(this.url)
@@ -26,6 +26,7 @@ export class CatsComponent implements OnInit {
         console.log(result);
         console.log(this.cats);
       }));
+
     }
   }
 

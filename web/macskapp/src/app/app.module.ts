@@ -9,7 +9,6 @@ import { CatsComponent } from './cats/cats.component';
 import { DogsComponent } from './dogs/dogs.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,8 @@ import { DogsComponent } from './dogs/dogs.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
+
 
   ],
   providers: [],
