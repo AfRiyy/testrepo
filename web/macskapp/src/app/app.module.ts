@@ -1,4 +1,4 @@
-import { NgModule,} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +7,11 @@ import { MainComponent } from './main/main.component';
 import { NopageComponent } from './nopage/nopage.component';
 import { CatsComponent } from './cats/cats.component';
 import { DogsComponent } from './dogs/dogs.component';
+import { ToknowComponent } from './toknow/toknow.component';
+import { SheltersComponent } from './shelters/shelters.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -15,16 +20,23 @@ import { DogsComponent } from './dogs/dogs.component';
     MainComponent,
     NopageComponent,
     CatsComponent,
-    DogsComponent
+    DogsComponent,
+    ToknowComponent,
+    SheltersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbLayoutModule,
+    NbEvaIconsModule
 
 
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
 })
 export class AppModule { }

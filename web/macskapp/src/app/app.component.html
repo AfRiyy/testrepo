@@ -1,42 +1,73 @@
+<nb-layout>
 
-<div class="main-bg" style="background-image: url(./assets/1471.jpg); background-size: auto; background-repeat: repeat;">
-<nav class="navbar navbar-expand-sm navbar-light justify-content-center mx-auto" style="background-color: #e3f2fd; width: 80%">
-  <div class="container-fluid">
-    <a class="navbar-brand text-muted" href="/main"><h2 class="display-4">MacskApp</h2></a>
+  <nb-layout-header fixed>
+  <!-- Insert header here -->
+  </nb-layout-header>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/main">Főoldal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cats">Macskák</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dogs">Kutyák</a>
-        </li>
-        
-      </ul>
+  <nb-layout-column>
+    
+    <div class="main-bg" style="background-color: #ffcccc; background-image: linear-gradient(to right, #ffcccc, #99d6ff);">
+    <nav class="navbar navbar-expand-sm navbar-light justify-content-center mx-auto" style="background-image: linear-gradient(to left, #ffcccc, #99d6ff); width: 80%">
+      <div class="container-fluid">
+        <a class="navbar-brand text-muted" href="/main"><h2 class="display-4">MacskApp</h2></a>
+    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class= "navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/main">Főoldal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/cats">Macskák</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dogs">Kutyák</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" ></a>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" routerLink="/toknow" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tudnivalók
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/toknow" >Tippek, tanácsok</a>
+                <a class="dropdown-item" routerLink="/toknow">Örökbefogadási feltételek</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/shelters">Hol vannak menhelyek?</a>
+              </div>
+            </li>
+            
+          </ul>
+          </div>
+          <div class="justify-content-end">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Ide írjon..." aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Keresés</button>
+          </form>
+        </div>
       </div>
-      <div class="justify-content-end">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Ide írjon..." aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit">Keresés</button>
-      </form>
+    </nav>
+    
+    
+    
+    <div class="mx-auto justify-content-center" style="width: 80%; margin: auto;">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-</nav>
+    </div>
+    <!-- class="nav nav-tabs justify-content-center" -->
+    
+    <!-- Footer -->
+    
+    
+  </nb-layout-column>
 
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
 
-
-<div class="mx-auto justify-content-center" style="width: 80%; margin: auto;">
-  <router-outlet></router-outlet>
-</div>
-</div>
-<!-- class="nav nav-tabs justify-content-center" -->
-
-<!-- Footer -->
-
+</nb-layout>
