@@ -30,4 +30,15 @@ class AuthController extends BaseController
     $success[ "name" ] = $user->name;
     return $this->sendResponse( $success, "User created successfuly" );
     }
+    public function login(Request $request){
+        if(Auth::attempt(["name"=> $request->name, "password"=> $request->password])){
+            $authUser = Auth::user();
+            $success["token"]= $authUser->createToken("adoptme")->plainTextToken;
+            $success["name"]=$authUser->name;
+            return $this->sendResponse($success,"User signed in");
+        }
+        else{
+            return $this->sendError("Sikertelen bejelentkezés", ["error"=>"Hibás adatok"]);
+        }
+    }
 }
