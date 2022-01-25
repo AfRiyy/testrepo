@@ -26,7 +26,6 @@ class CreatePetsTable extends Migration
             $table->boolean('adopted');
             $table->foreignId('locations_id');
             $table->string('picturePath');
-            $table->Date('entryDate');
             $table->boolean('neutered');
             $table->timestamps();
         });
