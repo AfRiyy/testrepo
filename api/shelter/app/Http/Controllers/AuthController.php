@@ -41,4 +41,10 @@ class AuthController extends BaseController
             return $this->sendError("Sikertelen bejelentkezés", ["error"=>"Hibás adatok"]);
         }
     }
+    public function logout( Request $request ) {
+        
+        auth( "sanctum" )->user()->currentAccessToken()->delete();
+
+        return response()->json('Successfully logged out');
+    }
 }
