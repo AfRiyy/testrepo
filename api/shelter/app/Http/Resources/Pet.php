@@ -17,8 +17,8 @@ class Pet extends JsonResource
         return[
             "id"=>$this->id,
             "name"=>$this->name,
-            "species_id"->$this->species_id,
-            "breeds_id"->$this->breeds_id,
+            "species"->$this->species,
+            "breeds"->$this->breeds,
             "age"->$this->age,
             "gender"->$this->gender,
             "adopted"->$this->adopted,

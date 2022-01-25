@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Models\Pets;
-class PetsController extends Controller
+use Validator;
+use App\Http\Resources\Pet as PetResources;
+use Illuminate\Support\Facades\DB;
+class PetsController extends BaseController
 {
     public function index(){
         $pets = Pets::all();
-        return $pets;
+        return $this->belongsTo(Pets::class);
+        // return $this->sendResponse(PetResources::collection($pets),"Pets fetched");
     }
+
     public function create(Request $request){
         request()->validate([
             'name'=>'required',
