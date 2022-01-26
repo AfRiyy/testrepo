@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CatsComponent } from './cats/cats.component';
 import { DogsComponent } from './dogs/dogs.component';
+import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NopageComponent } from './nopage/nopage.component';
 import { SheltersComponent } from './shelters/shelters.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'dogs', component: DogsComponent },
   { path: 'toknow', component: ToknowComponent },
   { path: 'shelters', component: SheltersComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' }, 
   { path: '**', component:  NopageComponent}
 ];

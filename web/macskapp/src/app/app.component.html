@@ -1,15 +1,9 @@
-<nb-layout>
 
-  <nb-layout-header fixed>
-  <!-- Insert header here -->
-  </nb-layout-header>
-
-  <nb-layout-column>
     
     <div class="main-bg" style="background-color: #ffcccc; background-image: linear-gradient(to right, #ffcccc, #99d6ff);">
-    <nav class="navbar navbar-expand-sm navbar-light justify-content-center mx-auto" style="background-image: linear-gradient(to left, #ffcccc, #99d6ff); width: 80%">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center mx-auto" style="background-image: linear-gradient(to left, #ffcccc, #99d6ff); width: 80%">
       <div class="container-fluid">
-        <a class="navbar-brand text-muted" href="/main"><h2 class="display-4">MacskApp</h2></a>
+        <a class="navbar-brand navbar-brand-sm text-muted" href="/main"><h2 class="display-4">FogadjÖrökbe</h2></a>
     
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class= "navbar-toggler-icon"></span>
@@ -41,33 +35,69 @@
                 <a class="dropdown-item" routerLink="/shelters">Hol vannak menhelyek?</a>
               </div>
             </li>
+          
             
+              
           </ul>
           </div>
           <div class="justify-content-end">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Ide írjon..." aria-label="Search">
-            <button class="btn btn-outline-dark" type="submit">Keresés</button>
-          </form>
-        </div>
+            <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Bejelentkezés
+            </a>
+            <div class="dropdown-menu dropdown-large"  style="padding-right: 70px; padding-left: 70px; padding-top: 20px; padding-bottom: 10px;">
+                <form class="form-horizontal pb-2" method="post" accept-charset="UTF-8">
+
+                
+
+                  
+                  <h6 style="padding-bottom: 5px;">Jelentkezz be!</h6>
+                    <input class="form-control" type="text" name="username" width="100px" placeholder="Név.."><br>
+                    <input class="form-control" type="password" name="password" placeholder="Jelszó.."><br>
+                    <button type="button" type="submit" name="submit" value="login" class="btn btn-secondary">Bejelentkezés</button>
+                 <hr>
+                    <h6 style="padding-top: 5px; padding-bottom: 5px;">Nincs még felhasználói fiókod?</h6>
+                    <button type="button" routerLink="/login" class="btn btn-secondary">Regisztráció</button>
+                    
+                
+              
+                </form>
+            </div>
+            </li>
+
+</ul>
+           </div> 
+
+          
       </div>
     </nav>
+
+
     
     
-    
-    <div class="mx-auto justify-content-center" style="width: 80%; margin: auto;">
+    <div class="mx-auto justify-content-center pb-5" style="width: 80%; margin: auto;">
       <router-outlet></router-outlet>
     </div>
-    </div>
+    
     <!-- class="nav nav-tabs justify-content-center" -->
     
     <!-- Footer -->
     
-    
-  </nb-layout-column>
 
-  <nb-layout-footer fixed>
-  <!-- Insert footer here -->
-  </nb-layout-footer>
 
-</nb-layout>
+
+    <div class="footer-basic mx-auto justify-content-center" style="background-color: white; width: 80%">
+    <footer>
+      <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item"><a href="#">Services</a></li>
+          <li class="list-inline-item"><a href="#">About</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      </ul>
+      <p class="copyright">Company Name © 2018</p>
+  </footer>
+</div>
+</div>

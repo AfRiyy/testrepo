@@ -8,9 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'macskapp';
- 
+  myForm = document.getElementById("myForm");
+
+  
   
   ngOnInit() {
-     
+    
   }
 }
