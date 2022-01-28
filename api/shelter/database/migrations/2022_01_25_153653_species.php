@@ -18,8 +18,10 @@ class Species extends Migration
         $table->charset = "utf8mb4";
         $table->collation = "utf8mb4_hungarian_ci";
         $table->id();
-        $table->string('name');
+        $table->string('sname');
         });
+        DB::table('species')->insert(array('sname'=>'kutya'));
+        DB::table('species')->insert(array('sname'=>'házi macska'));
     }
 
     /**
