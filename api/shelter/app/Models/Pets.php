@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pets extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'name', 'species', 'age', 'gender', 'adopted', 'picturePath'
+        'name',
+        'breeds_id',
+        'age',
+        'gender',
+        'adopted',
+        'locations_id',
+        'picture_path',
+        'neutered'
     ];
 }
