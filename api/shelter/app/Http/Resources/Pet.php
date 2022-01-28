@@ -17,16 +17,16 @@ class Pet extends JsonResource
         return[
             "id"=>$this->id,
             "name"=>$this->name,
-            "species"->$this->species,
-            "breeds"->$this->breeds,
-            "age"->$this->age,
-            "gender"->$this->gender,
-            "adopted"->$this->adopted,
-            "locations_id"->$this->locations_id,
-            "picturePath"->$this->picturePath,
-            "neutered"->$this->neutered,
-            "created_at"->$this->created_at->format("m/d/Y"),
-            "updated_at"->$this->updated_at->format("m/d/Y")
+            "species"=>$request['sname'],
+            "breeds"=>$request['bname'],
+            "age"=>$this->age,
+            "gender"=>$this->gender,
+            "adopted"=>$this->adopted,
+            "shelters_id"=>$this->shelters_id,
+            "picture_path"=>$this->picture_path,
+            "neutered"=>$this->neutered,
+            "created_at"=>$this->created_at,
+            "updated_at"=>$this->updated_at
         ];
     }
 }
