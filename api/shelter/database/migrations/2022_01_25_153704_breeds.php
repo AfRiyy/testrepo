@@ -18,8 +18,11 @@ class Breeds extends Migration
             $table->charset = "utf8mb4";
             $table->collation = "utf8mb4_hungarian_ci";
             $table->id();
-            $table->string('name');
+            $table->string('bname');
+            $table->foreignId('species_id')->constrained('species');
         });
+        DB::table('breeds')->insert(array('bname'=>'kuvasz', 'species_id'=>1));
+        DB::table('breeds')->insert(array('bname'=>'sziámi', 'species_id'=>2));
     }
 
     /**
