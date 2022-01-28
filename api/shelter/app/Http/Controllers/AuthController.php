@@ -13,12 +13,13 @@ use Validator;
 
 class AuthController extends BaseController
 {
-    public function register(Request $request){
+    public function signUp(Request $request){
         $validator = Validator::make($request->all(), [
-            "name"=>"required",
+            "username"=>"required",
             "email" => "required",
             "password" => "required",
             "confirm_password" => "required",
+            "birth_date" => "required",
         ]);
 
         if($validator->fails()){
@@ -27,21 +28,22 @@ class AuthController extends BaseController
     $input = $request->all();
     $input[ "password" ] = bcrypt( $input[ "password" ]);
     $user = User::create( $input );
-    $success[ "name" ] = $user->name;
+    $success[ "username" ] = $user->username;
     return $this->sendResponse( $success, "User created successfuly" );
     }
-    public function login(Request $request){
-        if(Auth::attempt(["name"=> $request->name, "password"=> $request->password])){
+
+    public function signIn(Request $request){
+        if(Auth::attempt(["username"=> $request->username, "password"=> $request->password])){
             $authUser = Auth::user();
             $success["token"]= $authUser->createToken("adoptme")->plainTextToken;
-            $success["name"]=$authUser->name;
+            $success["username"]=$authUser->username;
             return $this->sendResponse($success,"User signed in");
         }
         else{
             return $this->sendError("Sikertelen bejelentkezés", ["error"=>"Hibás adatok"]);
         }
     }
-    public function logout( Request $request ) {
+    public function signOff( Request $request ) {
         
         auth( "sanctum" )->user()->currentAccessToken()->delete();
 
