@@ -9,6 +9,6 @@ class Specie extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "name"
+        "sname"
     ];
 }
