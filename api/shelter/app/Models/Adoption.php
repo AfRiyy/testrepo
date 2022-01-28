@@ -10,6 +10,8 @@ class Adoption extends Model
     use HasFactory;
 
     protected $fillable = [
-        "date","pets_id","users_id"
+        "date",
+        "pets_id",
+        "users_id"
     ];
 }
