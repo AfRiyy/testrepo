@@ -22,7 +22,7 @@ class CreateSheltersTable extends Migration
             $table->string('shelter_address');
             $table->string('shelter_phone');
             $table->string('shelter_website');
-            $table->string('shelter_facebook');
+            $table->string('shelter_facebook')->nullable();
             $table->timestamps();
         });
     }
