@@ -19,13 +19,12 @@ class CreatePetsTable extends Migration
             $table->collation = "utf8mb4_hungarian_ci";
             $table->id();
             $table->string('name');
-            $table->foreignId('species_id');
-            $table->foreignId('breeds_id');
+            $table->foreignId('breeds_id')->constrained('breeds');
             $table->integer('age');
             $table->boolean('gender');
             $table->boolean('adopted');
-            $table->foreignId('locations_id');
-            $table->string('picturePath');
+            $table->foreignId('shelters_id')->constrained('shelters');
+            $table->string('picture_path');
             $table->boolean('neutered');
             $table->timestamps();
         });
