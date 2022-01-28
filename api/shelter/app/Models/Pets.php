@@ -8,13 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Pets extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'gender' => 'boolean',
+        'adopted' => 'boolean',
+        'neutered' => 'boolean'
+    ];
     protected $fillable = [
         'name',
         'breeds_id',
         'age',
         'gender',
         'adopted',
-        'locations_id',
+        'shelters_id',
         'picture_path',
         'neutered'
     ];
