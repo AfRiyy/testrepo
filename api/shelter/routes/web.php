@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PetsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +16,3 @@ use App\Http\Controllers\PetsController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/pictureTest',function () {
-    return view('picture');
-});
-Route::post('/store',[PetsController::class,'storeImage']);
