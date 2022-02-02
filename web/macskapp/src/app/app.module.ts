@@ -12,8 +12,9 @@ import { SheltersComponent } from './shelters/shelters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +25,15 @@ import { LoginComponent } from './login/login.component';
     DogsComponent,
     ToknowComponent,
     SheltersComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
-
-
-
+    BrowserAnimationsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

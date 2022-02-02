@@ -8,6 +8,10 @@ import { NopageComponent } from './nopage/nopage.component';
 import { SheltersComponent } from './shelters/shelters.component';
 import { ToknowComponent } from './toknow/toknow.component';
 
+import { AuthGuard } from './shared/auth.guard';
+import { AdminComponent } from './admin/admin.component';
+
+
 const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'cats', component: CatsComponent },
@@ -15,6 +19,7 @@ const routes: Routes = [
   { path: 'toknow', component: ToknowComponent },
   { path: 'shelters', component: SheltersComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'main', pathMatch: 'full' }, 
   { path: '**', component:  NopageComponent}
 ];
