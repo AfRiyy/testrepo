@@ -10,11 +10,12 @@ import { DogsComponent } from './dogs/dogs.component';
 import { ToknowComponent } from './toknow/toknow.component';
 import { SheltersComponent } from './shelters/shelters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,8 @@ import { AdminComponent } from './admin/admin.component';
     DogsComponent,
     ToknowComponent,
     SheltersComponent,
-    LoginComponent,
-    AdminComponent
+    AdminComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,
