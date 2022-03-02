@@ -13,7 +13,7 @@ import { AuthService } from '../app/shared/auth.service';
 export class AppComponent {
 
   loginForm !: FormGroup
-  isShown: boolean = true;
+
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
@@ -26,12 +26,6 @@ export class AppComponent {
       password: ['']
     });
   }
-
-  toggleShow() {
-
-    this.isShown = ! this.isShown;
-    
-    }
 
   login() {
     let username = this.loginForm.value.username;
