@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../app/shared/auth.service';
+import { AccountService } from '../app/shared/account.service';
 
 
 
@@ -15,7 +16,8 @@ export class AppComponent {
   loginForm !: FormGroup
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
+    public account: AccountService,
     private formBuilder: FormBuilder,
     private router: Router
     ) { }
@@ -48,4 +50,11 @@ export class AppComponent {
     })
 
   }
+
+  logout(){
+    this.auth.logout();
+  }
+
+  
+
 }
