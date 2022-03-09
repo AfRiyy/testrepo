@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Adoptions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController as BaseController;
-use App\Models\Pets;
-use App\Models\Breed;
-use App\Models\Specie;
-use Validator;
-use App\Http\Resources\Pet as PetResources;
+use App\Models\Pet;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use Storage;
-use Illuminate\Support\Facades\Input;
-use App\Models\Adoption;
+use Illuminate\Support\Facades\Storage;
 
-class PetsController extends BaseController
+class PetController extends BaseController
 {
     public function index()
     {
         $pets = DB::table('pets')
             ->join('breeds', 'pets.breeds_id', '=', 'breeds.id')
             ->join('species', 'breeds.species_id', '=', 'species.id')
-            ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered', 'created_at', 'updated_at')
+            ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered')
             ->get();
         return $this->sendResponse($pets, 'Pets fetched');
     }
@@ -31,7 +25,7 @@ class PetsController extends BaseController
         $pet = DB::table('pets')
             ->join('breeds', 'pets.breeds_id', '=', 'breeds.id')
             ->join('species', 'breeds.species_id', '=', 'species.id')
-            ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered', 'created_at', 'updated_at')
+            ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered')
             ->where('pets.id', '=', $id)
             ->get();
         if ($pet->isNotEmpty()) {
@@ -50,22 +44,22 @@ class PetsController extends BaseController
             'adopted' => 'required',
             'shelters_id' => 'required',
             'neutered' => 'required',
+            'image' => 'mimes:jpeg,jpg,png'
         ]);
         if ($validator->fails()) {
             return $this->sendError("Error validation", $validator->errors());
         }
         $path = '';
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image_name = $image->getClientOriginalName();
-            $destination_path = 'public/images/' . $request('name') . '/';
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
-            $input['image'] = $image_name;
+            $filePath = 'images/' . $request['name'] . '/';
+            $extension = $request->file('image')->guessExtension();
+            Storage::putFileAs($filePath, $request['image'], $request['name'] . '.' . $extension);
+            $path = 'images/' . $request['name'] . '/' . $request['name'] . '.' . $extension;
         }
         $bname = $request['bname'];
         $breeds_id = DB::table('breeds')->select('id')->where('bname', '=', $bname)->get();
         try {
-            $query = Pets::create([
+            $query = Pet::create([
                 'name' => request('name'),
                 'breeds_id' => $breeds_id[0]->id,
                 'age' => request('age'),
@@ -83,31 +77,35 @@ class PetsController extends BaseController
     public function update(Request $request, $id)
     {
         $path = '';
-        $breeds_id = DB::table('breeds')->select('id')->where('bname', '=', $request['bname'])->get();
+
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image_name = $image->getClientOriginalName();
-            $destination_path = 'public/images/' . $request('name') . '/';
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
-            $input['image'] = $image_name;
+            $filePath = DB::table("pets")->select("picture_path")->where("id", "=", $id)->get();
+            Storage::delete($filePath[0]->picture_path);
+            $filePath = 'images/' . $request['name'] . '/';
+            $extension = $request->file('image')->guessExtension();
+            $files = Storage::allFiles($path);;
+            Storage::putFileAs($filePath, $request['image'], $request['name'] . '.' . $extension);
+            $path = 'images/' . $request['name'] . '/' . $request['name'] . '.' . $extension;
         }
         try {
+            $breeds_id = DB::table('breeds')->select('id')->where("bname", "=", $request['bname'])->first();
             $query = DB::table('pets')
-                ->join('breeds', 'pets.breeds_id', '=', 'breeds.id')
-                ->join('species', 'breeds.species_id', '=', 'species.id')
-                ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered', 'created_at', 'updated_at')
-                ->where('pets.id', '=', $id)
+                ->where("id", "=", $id)
                 ->update([
-                    'name' => request('name'),
-                    'breeds_id' => $breeds_id[0]->id,
-                    'age' => request('age'),
-                    'gender' => request('gender'),
-                    'adopted' => request('adopted'),
-                    'shelters_id' => request('shelters_id'),
-                    'picture_path' => $path,
-                    'neutered' => request('neutered')
+                    'name' => (string)request('name'),
+                    'breeds_id' => $breeds_id->id,
+                    'age' => (string)request('age'),
+                    'gender' => (string)request('gender'),
+                    'adopted' => (string)request('adopted'),
+                    'shelters_id' => (string)request('shelters_id'),
+                    'picture_path' => (string)$path,
+                    'neutered' => (bool)$request['neutered']
                 ]);
-            return $this->sendResponse($request->all(), 'Pet updated!');
+            if ($query == 1) {
+                return $this->sendResponse($query, 'Pet updated!');
+            } else {
+                return $this->sendResponse($query, 'Pet not updated!');
+            }
         } catch (\Throwable $th) {
             return $this->sendError("Error in updation of pet", $th);
         }
@@ -115,22 +113,14 @@ class PetsController extends BaseController
     public function delete($id)
     {
         try {
-            Pets::destroy($id);
-            return $this->sendResponse('', 'Pet deleted!');
+            $pet = Pet::destroy($id);
+            if ($pet) {
+                return $this->sendResponse('', 'Pet deleted!');
+            } else {
+                return $this->sendResponse('', 'Pet already deleted!');
+            }
         } catch (\Throwable $th) {
             return $this->sendError("Adopted pet cannot be deleted!", $th);
-        }
-    }
-    public function storeImage(Request $request)
-    {
-        $input = $request->all();
-        if ($request->hasFile('image')) {
-            $destination_path = 'public/images';
-            $image = $request->file('image');
-            $image_name = $image->getClientOriginalName();
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
-            $input['image'] = $image_name;
-            return 'public/images/' . $image_name;
         }
     }
 }

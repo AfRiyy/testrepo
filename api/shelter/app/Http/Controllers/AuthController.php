@@ -8,7 +8,7 @@ use Illuminate\Support\facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\BaseController;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends BaseController

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Pets;
-use App\Http\Controllers\PetsController;
-use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\PetController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,9 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::post('/logout', [AuthController::class, "signOff"]);
 
-    Route::post('/pets', [PetsController::class, 'create']);
-    Route::put('/pets/{pet}', [PetsController::class, 'update']);
-    Route::delete('/pets/{pet}', [PetsController::class, 'delete']);
+    Route::post('/pets', [PetController::class, 'create']);
+    Route::put('/pets/{pet}', [PetController::class, 'update']);
+    Route::delete('/pets/{pet}', [PetController::class, 'delete']);
 
     Route::post('/species', [SpecieController::class, 'create']);
     Route::put('/species/{specie}', [SpecieController::class, 'update']);
@@ -45,12 +43,11 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::put('/adoptions/{adoption}', [AdoptionController::class, 'update']);
     Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'delete']);
 });
-
 Route::post('/login', [AuthController::class, "signIn"]);
 Route::post('/register', [AuthController::class, "signUp"]);
 
-Route::get('/pets', [PetsController::class, 'index']);
-Route::get('/pets/{pet}', [PetsController::class, 'show']);
+Route::get('/pets', [PetController::class, 'index']);
+Route::get('/pets/{pet}', [PetController::class, 'show']);
 
 Route::get('/species', [SpecieController::class, 'index']);
 Route::get('/species/{specie}', [SpecieController::class, 'show']);
