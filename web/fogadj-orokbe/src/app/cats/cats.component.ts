@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat } from '../cat';
+import { Pet } from '../pet';
 import { PetsService } from "../shared/pets.service";
 
 @Component({
@@ -30,16 +31,52 @@ export class CatsComponent implements OnInit {
 
   // }
 
-  pets: any;
-  constructor(private pet: PetsService) { }
+  // pets: Pet[] = [];
+  // constructor() { }
+  // ngOnInit() {
+  //   let url = 'http://localhost:8000/api/pets';
+  //   fetch(url)
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     this.pets = data;
+  //   })
+  // }
+  // getPets() {
+  //   this.pet.getPets().subscribe(result => {
+  //     this.pets = result;
+  //     console.log(JSON.stringify(result));
+  //   });
+  // }
+
+
+  pets!: Pet[];
+
+  constructor(private petsService: PetsService) {}
+ 
   ngOnInit() {
-    this.getPets();
+    this.setPets();
   }
-  getPets() {
-    this.pet.getPets().subscribe(result => {
-      this.pets = result;
+  // getPets() {
+  //   this.petsService.getPets().subscribe( pets => {
+  //       this.pets = pets;
+  //       let object = JSON.stringify(this.pets);
+  //       console.log(object);
+        
+
+        
+        
+  //   });
+  // }
+
+  setPets() {
+    this.petsService.getPets().subscribe(result => {
       console.log(JSON.stringify(result));
-    });
+      this.pets = result;
+      
+    })
   }
+
+
 }
+
 
