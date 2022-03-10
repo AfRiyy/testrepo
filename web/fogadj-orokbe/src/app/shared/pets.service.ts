@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pet } from '../pet'
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,9 +16,15 @@ export class PetsService {
     
    }
 
-  getPets(): Observable<Pet[]> {
-    let endpoint = 'pets';
-    let url = this.host + endpoint;
-    return this.http.get<Pet[]>(url);
+//   getPets(): Observable<Pet[]> {
+//     let endpoint = 'pets';
+//     let url = this.host + endpoint;
+//     return this.http.get<Pet[]>(url);
+// }
+
+getPets() {
+  let endpoint = 'pets';
+    return this.http.get<any>(this.host + endpoint)
 }
+
 }

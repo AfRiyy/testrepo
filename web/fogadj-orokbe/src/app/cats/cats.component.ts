@@ -12,12 +12,12 @@ export class CatsComponent implements OnInit {
 
   // cats: Cat[] = [];
   // url = 'http://localhost:3000/cats';
-  // id = 0;
-  // name = '';
-  // species = '';
-  // age = 0;
-  // gender = '';
-  // picturePath='';
+  id = 0;
+  name = '';
+  species = '';
+  age = 0;
+  gender = '';
+  picturePath='';
 
 
   // ngOnInit(): void {
@@ -31,7 +31,7 @@ export class CatsComponent implements OnInit {
 
   // }
 
-  // pets: Pet[] = [];
+  pets: Pet[] = [];
   // constructor() { }
   // ngOnInit() {
   //   let url = 'http://localhost:8000/api/pets';
@@ -48,31 +48,22 @@ export class CatsComponent implements OnInit {
   //   });
   // }
 
+  petsData!: [];
 
-  pets!: Pet[];
 
   constructor(private petsService: PetsService) {}
  
   ngOnInit() {
-    this.setPets();
+    this.getAllPets();   
   }
-  // getPets() {
-  //   this.petsService.getPets().subscribe( pets => {
-  //       this.pets = pets;
-  //       let object = JSON.stringify(this.pets);
-  //       console.log(object);
-        
 
-        
-        
-  //   });
-  // }
-
-  setPets() {
-    this.petsService.getPets().subscribe(result => {
-      console.log(JSON.stringify(result));
-      this.pets = result;
+  getAllPets() {
+    this.petsService.getPets()
+    .subscribe( res => {
       
+      console.log(res.data)
+
+
     })
   }
 

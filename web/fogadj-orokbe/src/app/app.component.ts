@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../app/shared/auth.service';
-import { AccountService } from '../app/shared/account.service';
 
 
 
@@ -17,7 +16,6 @@ export class AppComponent {
 
   constructor(
     public auth: AuthService,
-    public account: AccountService,
     private formBuilder: FormBuilder,
     private router: Router
     ) { }
@@ -27,6 +25,10 @@ export class AppComponent {
       username: [''],
       password: ['']
     });
+  }
+
+  isLoggedIn() {
+    return this.auth.isLoggedIn()
   }
 
   login() {

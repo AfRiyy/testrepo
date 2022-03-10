@@ -44,7 +44,7 @@
         </ul>
       </div>
       <div class="justify-content-end">
-        <div *ngIf="!auth.isLoggedIn">
+        <div *ngIf="!isLoggedIn()">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
 
@@ -80,7 +80,7 @@
         </div>
 
 
-        <div *ngIf="account.isLoggedIn">
+        <div *ngIf="isLoggedIn()">
           <ul class="navbar-nav">
           <li class="nav-item">
             <button type="button" (click)="logout()" class="btn btn-secondary">Kijelentkezés</button>

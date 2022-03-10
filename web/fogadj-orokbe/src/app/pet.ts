@@ -7,4 +7,5 @@ export interface Pet {
     adopted: boolean;
     shelter_id: number;
     neutered: boolean;
+ 
 }
