@@ -39,6 +39,7 @@ class AuthController extends BaseController
             $authUser = Auth::user();
             $success["token"] = $authUser->createToken("adoptme")->plainTextToken;
             $success["username"] = $authUser->username;
+			$success["admin"] = $authUser->admin;
             return $this->sendResponse($success, "User signed in");
         } else {
             return $this->sendError("Sikertelen bejelentkezés", ["error" => "Hibás adatok"]);
