@@ -55,8 +55,8 @@ Route::get('/species/{specie}', [SpecieController::class, 'show']);
 Route::get('/breeds', [BreedController::class, 'index']);
 Route::get('/breeds/{breed}', [BreedController::class, 'show']);
 
-Route::get('/shelters', [BreedController::class, 'index']);
-Route::get('/shelters/{shelter}', [BreedController::class, 'show']);
+Route::get('/shelters', [ShelterController::class, 'index']);
+Route::get('/shelters/{shelter}', [ShelterController::class, 'show']);
 
 Route::get('/adoptions', [AdoptionController::class, 'index']);
 Route::get('/adoptions/{adoption}', [AdoptionController::class, 'show']);
