@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Shelter extends Model
 {
     use HasFactory;
-    private $fillable=[
+    protected $fillable = [
         "shelter_name",
-        "shelter_address",
+        "shelter_zip",
+        "shelter_city",
+        "shelter_street_address",
         "shelter_phone",
         "shelter_website",
         "shelter_facebook"
