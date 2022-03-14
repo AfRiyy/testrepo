@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shelter;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ShelterController extends BaseController
 {
@@ -29,10 +29,7 @@ class ShelterController extends BaseController
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'shelter_name' => 'required',
-            'shelter_address' => "required",
-            'shelter_phone' => 'required',
-            'shelter_website' => 'required',
+            'shelter_name' => 'required'
         ]);
         if ($validator->fails()) {
             return $this->sendError("Error validation", $validator->errors());
