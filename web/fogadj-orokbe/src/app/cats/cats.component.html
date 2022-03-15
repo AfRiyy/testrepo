@@ -14,15 +14,14 @@ style="
 
 
   <div class="card-deck row">
-    <div class="card col-lg-4 p-2" *ngFor="let pet of petsData" >
+    <div class="card col-lg-4 p-2" *ngFor="let cat of cats" >
       <img src= "../../assets/cat2.jpg" class="card-img-top" alt="Card image cap">
       
       <div class="card-body" >
-
-
-        <!-- <h5 class="card-title">{{pet.name}}</h5> -->
-        <!-- <p class="card-text">{{cat.age}}</p>
-        <p class="card-text">{{cat.gender}}</p> -->
+        
+        <h5 class="card-title">{{cat.name}}</h5>
+        <p class="card-text">{{cat.age}}</p>
+        <p class="card-text">{{cat.gender}}</p>
       </div>
     </div>
   </div>
