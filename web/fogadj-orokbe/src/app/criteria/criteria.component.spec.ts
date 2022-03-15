@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeSlideComponent } from './welcome-slide.component';
+import { CriteriaComponent } from './criteria.component';
 
-describe('WelcomeSlideComponent', () => {
-  let component: WelcomeSlideComponent;
-  let fixture: ComponentFixture<WelcomeSlideComponent>;
+describe('CriteriaComponent', () => {
+  let component: CriteriaComponent;
+  let fixture: ComponentFixture<CriteriaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WelcomeSlideComponent ]
+      declarations: [ CriteriaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeSlideComponent);
+    fixture = TestBed.createComponent(CriteriaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
