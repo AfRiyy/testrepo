@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cat } from '../cat';
-
+import { Pet } from '../shared/pet/pet';
+import { PetsService } from "../shared/pet/pets.service";
 @Component({
   selector: 'app-cats',
   templateUrl: './cats.component.html',
@@ -8,25 +8,26 @@ import { Cat } from '../cat';
 })
 export class CatsComponent implements OnInit {
 
-    cats: Cat[] = [];
-    url = 'http://localhost:3000/cats';
-    id = 0;
-    name = '';
-    species = '';
-    age = 0;
-    gender = '';
-    picturePath='';
+  pets: Pet[] = [];
+  cats: Pet[] = [];
+  constructor(private petsService: PetsService) {}
 
-  
-    ngOnInit(): void {
-      fetch(this.url)
-      .then(response => response.json()
-      .then(result => {
-        this.cats = result;
-        console.log(result);
-        console.log(this.cats);
-      }));
-
-    }
+  ngOnInit() {
+    this.getAllPets();
   }
+
+  getAllPets() {
+    this.petsService.getPets()
+    .subscribe( res => {
+      this.pets = res.data;
+      this.pets.forEach(pet => {
+        if(pet.sname == "házi macska" && pet.adopted == false){
+          console.log(pet);
+          this.cats.push(pet);
+        }
+      });
+    })
+  }
+}
+
 
