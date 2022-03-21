@@ -34,6 +34,8 @@ export class RegisterComponent implements OnInit {
     let pass2 = this.registerForm.value.pass2;
     let birth = this.registerForm.value.birth;
 
+    console.log(email, user, pass, pass2, birth)
+
     this.auth.register(user, pass, pass2, email, birth)
     .subscribe(res => {
       console.log(res);
@@ -48,7 +50,5 @@ export class RegisterComponent implements OnInit {
       }
     })
   }
-  logpage(){
-    this.router.navigate(['main']);
-  }
+
 }

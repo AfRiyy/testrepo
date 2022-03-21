@@ -14,10 +14,10 @@ style="
 
 
   <div class="card-deck row">
-    <div class="card col-lg-6 p-1 text-center" *ngFor="let pet of cats" >
+    <div class="card col-lg-6 p-1 text-center mb-2 " *ngFor="let pet of cats" >
       <img src= "http://localhost:8000/{{pet.picture_path}}" class="card-img-top img-thumbnail" id="cat-picture" alt="Card image cap">
-      <div class="card-body" >
-          <a href="">
+      <div class="card-body" id="catInfo">
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
             <h5 class="card-title">{{pet.name}}</h5>
           </a>
           <p class="card-text">{{pet.bname}}</p>
@@ -28,6 +28,46 @@ style="
           <div *ngIf="pet.gender == true">
             <p class="card-text">nőstény</p>
         </div>
-      </div>
+
+        <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Profil
+        </button>
+        
     </div>
   </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  *ngFor="let pet of cats, trackBy: trackItem" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{pet.name}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-start d-flex flex-row justify-content-around">
+          <div>
+          <img src= "http://localhost:8000/{{pet.picture_path}}" class="" id="cat-picture" alt="Card image cap">
+          </div>
+          <div class="">
+
+              <p class="">{{pet.bname}}</p>
+              <p class="">{{pet.age}} éves</p>
+              <div *ngIf="pet.gender == false">
+                <p class="">hím</p>
+              </div>
+              <div *ngIf="pet.gender == true">
+                <p class="">nőstény</p>
+              </div>
+              
+        </div>
+        </div>
+        <p class="text-center">Ő egy nagyon aranyos cica, bármit megtesz a huncut elfoglaltságokért, proceed with caution</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+          <button type="button" class="btn btn-primary" *ngIf="">Örökbefogadom!</button>
+        </div>
+      
+    </div>
+  </div>
+</div>

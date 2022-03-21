@@ -27,6 +27,10 @@ export class AppComponent {
     });
   }
 
+  isLoggedIn() {
+    return this.auth.isLoggedIn()
+  }
+
   login() {
     let username = this.loginForm.value.username;
     let password = this.loginForm.value.password;
@@ -48,4 +52,10 @@ export class AppComponent {
     })
 
   }
+
+  logout(){
+    this.auth.logout();
+  }
+
+
 }

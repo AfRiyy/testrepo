@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Pet } from '../shared/pet/pet';
 import { PetsService } from "../shared/pet/pets.service";
 @Component({
@@ -10,6 +10,7 @@ export class CatsComponent implements OnInit {
 
   pets: Pet[] = [];
   cats: Pet[] = [];
+
   constructor(private petsService: PetsService) {}
 
   ngOnInit() {
@@ -28,6 +29,10 @@ export class CatsComponent implements OnInit {
       });
     })
   }
+
+  trackItem(pet: any): any {
+    return pet.id;
+}
 }
 
 
