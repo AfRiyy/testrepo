@@ -20,6 +20,7 @@ class CreateBreedsTable extends Migration
             $table->id();
             $table->string('bname');
             $table->foreignId('species_id')->constrained('species');
+            $table->timestamps();
         });
     }
 

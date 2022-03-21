@@ -18,13 +18,11 @@ class CreateUsersTable extends Migration
             $table->charset = "utf8mb4";
             $table->collation = "utf8mb4_hungarian_ci";
             $table->id();
-            $table->string('username', 10)->unique();
-            $table->string('full_name',80)->nullable();
+            $table->string('user')->unique();
             $table->date('birth');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 16);
-            $table->string('phone')->nullable();
+            $table->string('password');
             $table->boolean('admin')->nullable();
             $table->rememberToken();
             $table->timestamps();

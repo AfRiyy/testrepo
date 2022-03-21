@@ -19,6 +19,7 @@ class CreateSpeciesTable extends Migration
             $table->collation = "utf8mb4_hungarian_ci";
             $table->id();
             $table->string('sname');
+            $table->timestamps();
         });
     }
 

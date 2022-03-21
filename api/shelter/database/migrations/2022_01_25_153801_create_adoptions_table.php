@@ -21,6 +21,7 @@ class CreateAdoptionsTable extends Migration
             $table->Date('date');
             $table->foreignId('pets_id')->constrained('pets');
             $table->foreignId('users_id')->constrained('users');
+            $table->timestamps();
         });
     }
 
