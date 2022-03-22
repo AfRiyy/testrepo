@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ignoreElements } from 'rxjs';
-import { AuthService } from '../shared/auth/auth.service';
 import { Pet } from '../shared/pet/pet';
 import { PetsService } from '../shared/pet/pets.service';
+import { ShelterInterface } from '../shared/shelter/shelter-interface';
+import { ShelterService } from '../shared/shelter/shelter.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,28 +12,37 @@ import { PetsService } from '../shared/pet/pets.service';
 })
 export class AdminComponent implements OnInit {
 
-  newCatForm !: FormGroup
+  newPetForm !: FormGroup
   pets: Pet[] = [];
   cats: Pet[] = [];
-  gender2!:boolean;
-  neutered2!:boolean;
-  Bname: any =["sziámi", "kuvasz"];
+
+  shelters: ShelterInterface[] = [];
+  shelters2: ShelterInterface[] = [];
+
+  gender2!: boolean;
+  neutered2!: boolean;
+
+  Bname: any = ["sziámi", "kuvasz"];
   bname: any;
-  Gender: any =["hím", "nőstény"];
+  Gender: any = ["hím", "nőstény"];
   gender: any;
-  Neutered: any =["igen", "nem"];
+  Neutered: any = ["igen", "nem"];
   neutered: any;
-  sname!:string;
-  
+  sname!: string;
+  shelters_id: any;
+  shelter_name!:string;
+
   constructor(
-    private auth: AuthService,
-    private router: Router,
-    private petsService: PetsService
+    private petsService: PetsService,
+    private shelt: ShelterService
   ) { }
+
+
   ngOnInit(): void {
+    this.getAllShelters();
     this.getAllPets();
     this.petsService.getPets();
-    this.newCatForm = new FormGroup({
+    this.newPetForm = new FormGroup({
       name: new FormControl(''),
       bname: new FormControl(''),
       age: new FormControl(''),
@@ -48,13 +56,24 @@ export class AdminComponent implements OnInit {
 
   getAllPets() {
     this.petsService.getPets()
-    .subscribe( res => {
-      this.pets = res.data;
-      this.pets.forEach(pet => {
+      .subscribe(res => {
+        this.pets = res.data;
+        this.pets.forEach(pet => {
           this.cats.push(pet);
-          console.log(pet);
-      });
-    })
+          // console.log(pet);
+        });
+      })
+  }
+  getAllShelters() {
+    this.shelt.getShelters()
+      .subscribe(res => {
+        this.shelters = res.data;
+        this.shelters.forEach(shelter => {
+          this.shelters2.push(shelter);
+          // console.log(shelter);
+          
+        });
+      })
   }
 
   changeBName(e: any) {
@@ -72,47 +91,49 @@ export class AdminComponent implements OnInit {
       onlySelf: true,
     });
   }
+  changeShelter(e: any) {
+    this.shelters_id?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
 
-  newPet(){
-    if (this.newCatForm.value.gender === "hím") {
+  newPet() {
+    if (this.newPetForm.value.gender === "hím") {
       this.gender2 = false;
     }
-    if (this.newCatForm.value.gender === "nőstény") {
+    if (this.newPetForm.value.gender === "nőstény") {
       this.gender2 = true;
     }
-    if(this.newCatForm.value.bname==="kuvasz"){
+    if (this.newPetForm.value.bname === "kuvasz") {
       this.sname = "kutya";
     }
-    if(this.newCatForm.value.bname==="sziámi"){
+    if (this.newPetForm.value.bname === "sziámi") {
       this.sname = "házi macska";
     }
 
-    if (this.newCatForm.value.neutered === "igen") {
+    if (this.newPetForm.value.neutered === "igen") {
       this.neutered2 = true;
     }
-    if (this.newCatForm.value.neutered === "nem") {
+    if (this.newPetForm.value.neutered === "nem") {
       this.neutered2 = false;
     }
 
-    
-
-    let name = this.newCatForm.value.name;
-    let bname = this.newCatForm.value.bname;
-    let age = this.newCatForm.value.age;
-
+    let name = this.newPetForm.value.name;
+    let bname = this.newPetForm.value.bname;
+    let age = this.newPetForm.value.age;
     let adopted = false;
-    let shelters_id = this.newCatForm.value.shelters_id;
+    let shelters_id = this.newPetForm.value.shelters_id;
 
 
     this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2, this.sname)
-    .subscribe(res => {
-      console.log(res);
-      if (res != 0) {
-        alert("Sikeres felvétel");
-      }else{
-        alert("A felvétel sikertelen!");
-      }
-    })
+      .subscribe(res => {
+        console.log(res);
+        if (res != 0) {
+          alert("Sikeres felvétel");
+        } else {
+          alert("A felvétel sikertelen!");
+        }
+      })
   }
 
 

@@ -1,6 +1,6 @@
 <div class="bg-light p-5">
   <h2 class="bg-info p-4">Új kisállat</h2>
-  <form [formGroup]="newCatForm" (ngSubmit)="newPet()">
+  <form [formGroup]="newPetForm" (ngSubmit)="newPet()">
     <div class="mb-3">
       <label for="name" class="form-label">Név</label>
       <input type="text" class="form-control" formControlName="name" required>
@@ -40,11 +40,23 @@
         </option>
       </select>
     </div>
-
+<!-- 
     <div class="mb-3">
       <label for="shelters_id" class="form-label">Menhely</label>
       <input type="text" class="form-control" formControlName="shelters_id">
+    </div> -->
+
+    <label for="shelters_id" class="form-label">Menhely</label>
+    <div class="input-group mb-3">
+      <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
+        <option value="">Válassz menhelyet: </option>
+        <option *ngFor="let shelter of shelters" [ngValue]="shelter.id">
+
+          {{shelter.shelter_name }}
+        </option>
+      </select>
     </div>
+
     <!-- <div class="mb-3">
       <label for="neutered" class="form-label">Ivartalanított</label>
       <input type="text" class="form-control" formControlName="neutered">
@@ -59,11 +71,6 @@
         </option>
       </select>
     </div>
-
-    <!-- <div class="mb-3">
-      <label for="sname" class="form-label">Species</label>
-      <input type="text" class="form-control" formControlName="sname">
-    </div> -->
 
 
     <button type="submit" class="btn btn-primary">Hozzáad</button>
@@ -93,8 +100,11 @@
         <td *ngIf="pet.gender == true"> nőstény</td>
         <td *ngIf="pet.adopted==false">Örökbefogadható</td>
         <td *ngIf="pet.adopted==true">Örökbefogadott</td>
-
+        <div *ngFor="let shelter of shelters">
+        <td *ngIf="pet.shelter_id == shelter.id">{{shelter.id}}</td>
+        </div>
       </tr>
+
     </tbody>
   </table>
 </div>
