@@ -15,11 +15,11 @@ export class AuthService {
       register(user: string, pass: string, pass2: string, email: string, birth: string) {
 
         let authData = {
-          username: user,
+          user: user,
           email: email,
           password: pass,
           confirm_password: pass2,
-          birth_date: birth
+          birth: birth
         }
         let data = JSON.stringify(authData);
 
