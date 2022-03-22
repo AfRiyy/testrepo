@@ -19,10 +19,14 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/dogs">Kutyák</a>
             </li>
-            
+            <div *ngIf="isLoggedIn()">
             <li class="nav-item">
-              <a class="nav-link" ></a>
+              <a class="nav-link" routerLink="/admin">Hozzáadás</a>
             </li>
+            </div>
+            <!-- <li class="nav-item">
+              <a class="nav-link" ></a>
+            </li> -->
     
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" routerLink="/toknow" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

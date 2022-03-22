@@ -45,20 +45,27 @@ style="
           <h5 class="modal-title" id="exampleModalLabel">{{pet.name}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body text-start d-flex flex-row justify-content-around">
+        <div class="modal-body text-start d-flex flex-row justify-content-between">
           <div>
           <img src= "http://localhost:8000/{{pet.picture_path}}" class="" id="cat-picture" alt="Card image cap">
           </div>
           <div class="">
 
-              <p class="">{{pet.bname}}</p>
-              <p class="">{{pet.age}} éves</p>
+              <p class="">Neve: {{pet.bname}}</p>
+              <p class="">Kora: {{pet.age}} éves</p>
               <div *ngIf="pet.gender == false">
-                <p class="">hím</p>
+                <p class="">Neme: hím</p>
               </div>
               <div *ngIf="pet.gender == true">
-                <p class="">nőstény</p>
+                <p class="">Neme: nőstény</p>
               </div>
+              <div *ngIf="pet.neutered == true">
+                <p>Ivartalanított-e: Ivartalanított</p>
+              </div>
+              <div *ngIf="pet.neutered == false">
+                <p>Ivartalanított-e: Nincs Ivartalanítva</p>
+              </div>
+              
               
         </div>
         </div>

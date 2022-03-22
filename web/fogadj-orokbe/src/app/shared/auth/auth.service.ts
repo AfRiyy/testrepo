@@ -37,12 +37,12 @@ export class AuthService {
       }
 
 
-    login(username: string, password: string) {
-      console.log(username)
+    login(user: string, password: string) {
+      console.log(user)
       console.log(password)
 
       let authData = {
-        username: username,
+        user: user,
         password: password
       }
       let data = JSON.stringify(authData);
