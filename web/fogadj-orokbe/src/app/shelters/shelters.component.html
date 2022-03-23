@@ -1,72 +1,25 @@
+<div class="container-fluid bg-white p-2" >
+  <h2 class="p-5 bg-info mt-2">Menhelyek</h2>
 
-<div class="container-fluid" style="background-color: white;">
-    <div id="content">
-        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a class="nav-link" href="#bacskiskun" data-toggle="tab">Bács-Kiskun</a></li>
-            <li><a class="nav-link" href="#baranya" data-toggle="tab">Baranya megye</a></li>
-            <li><a class="nav-link" href="#bekes" data-toggle="tab">Békés</a></li>
-            <li><a class="nav-link" href="#borsod" data-toggle="tab">Borsod-Abaúj Zemplén</a></li>
-            <li><a class="nav-link" href="#budapest" data-toggle="tab">Budapest</a></li>
-            <li><a class="nav-link" href="#csongrad" data-toggle="tab">Csongrád</a></li>
-            <li><a class="nav-link" href="#fejer" data-toggle="tab">Fejér</a></li>
-            <li><a class="nav-link" href="#gyor" data-toggle="tab">Győr-Moson-Sopron</a></li>
-            <li><a class="nav-link" href="#hajdu" data-toggle="tab">Hajdú-Bihar</a></li>
-            <li><a class="nav-link" href="#jasz" data-toggle="tab">Jász-Nagykun-Szolnok</a></li>
-            <li><a class="nav-link" href="#komarom" data-toggle="tab">Komárom-Esztergom</a></li>
-        </ul>
-        <div id="zip-search" class="d-flex justify-content-center">
-          <h5 class="mr-5">Szűrés irányítószám alapján:</h5>
-          <input class="ml-5 " type="text" name="zip" id="zip">
-        </div>
-        <hr>
-        <div id="my-tab-content" class="tab-content">
-            <div class="tab-pane active" id="bacskiskun">
-    
-            </div>
-            <div class="tab-pane" id="baranya"></div>
-            <div class="tab-pane" id="bekes"></div>
-            <div class="tab-pane" id="borsod"></div>
-            <div class="tab-pane" id="budapest"></div>
-            <div class="tab-pane" id="csongrad"></div>
-                
-                <div class="tab-pane" id="fejer"><div class="tab-pane" id="gyor"></div>
-            <div class="tab-pane" id="hajdu"></div>
-                
-         <div class="tab-pane" id="jasz">
-                </div>
-            <div class="tab-pane" id="komarom">
-              <div class="menhely card m-1 p-2">
-                  <h5 class="title">Bogáncs Kutya- és Kisállatotthon Alapítvány</h5>
-                <p class="address">
-                  2500 Esztergom, Csapási Dűlő
-                </p>
-                <p class="telephone">
-                  Telefon: +36 30 / 235 27 95
-                </p>
-                <p class="webpage">
-                  <a href="http://www.bogancsotthon.hu/?fbclid=IwAR0w8HAdro0VuM3K7s_wvV-JpfNygNlLKG4Y7TAsxPEGleZpY_k5Fltlntk">
-                    weboldal
-                  </a>
-                </p>
-                <p class="social">
-                  <a href="https://www.facebook.com/BogancsKutyamenhely/">
-                    facebook
-                  </a>
-                </p>
-              </div> 
-            </div>
-    
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $('#tabs').tab();
-        });
-    </script>
-     <!-- container -->
-    
-    
-    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-    
-    
-    
-    
-    
+  <div id="zip-search" class="d-flex justify-content-center bg-white my-4">
+    <h5>Szűrés irányítószám alapján:</h5>
+    <input type="text" [(ngModel)]="zip" class="form-control">
+  </div>
+  
+    <div class="card my-3" *ngFor="let shelter of shelters | zipfilter: zip">
+      <div class="card-header bg-info">
+        {{shelter.shelter_name}}
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{shelter.shelter_zip}}</p>
+        <p class="card-text">Cím: {{shelter.shelter_street_address}}</p>
+        <p class="card-text">Telefon: {{shelter.shelter_phone}}</p>
+        <p class="card-text">weboldal: {{shelter.shelter_website}}</p>
+        <p class="card-text">Facebook: {{shelter.shelter_facebook}}</p>
+      </div>
+    </div>
+  </div>
+
+
+
+

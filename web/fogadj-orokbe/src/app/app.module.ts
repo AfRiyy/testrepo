@@ -12,11 +12,12 @@ import { SheltersComponent } from './shelters/shelters.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
 import { CriteriaComponent } from './criteria/criteria.component';
+import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,14 +30,16 @@ import { CriteriaComponent } from './criteria/criteria.component';
     SheltersComponent,
     AdminComponent,
     RegisterComponent,
-    CriteriaComponent
+    CriteriaComponent,
+    ZipfilterPipe
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [],
