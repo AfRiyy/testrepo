@@ -29,16 +29,16 @@ class AuthController extends BaseController
         $input = $request->all();
         $input["password"] = bcrypt($input["password"]);
         $user = User::create($input);
-        $success["username"] = $user->username;
+        $success["user"] = $user->user;
         return $this->sendResponse($success, "User created successfuly");
     }
 
     public function signIn(Request $request)
     {
-        if (Auth::attempt(["username" => $request->username, "password" => $request->password])) {
+        if (Auth::attempt(["user" => $request->user, "password" => $request->password])) {
             $authUser = Auth::user();
             $success["token"] = $authUser->createToken("adoptme")->plainTextToken;
-            $success["username"] = $authUser->username;
+            $success["user"] = $authUser->user;
 			$success["admin"] = $authUser->admin;
             return $this->sendResponse($success, "User signed in");
         } else {
