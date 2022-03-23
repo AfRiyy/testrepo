@@ -18,6 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
 
   ],
   providers: [],
