@@ -22,6 +22,30 @@ export class PetsService {
     return this.http.get<any>(this.host + endpoint)
   }
 
+  updatePets(id: number, adopted: boolean){
+    let vData = {
+      id: id,
+      adopted: adopted
+    }
+    let data = JSON.stringify(vData);
+
+    let udata:any = localStorage.getItem('currentUser');
+    let currentUser = JSON.parse(udata);
+    let token = currentUser.token;
+
+    let headerObj = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    let header = {
+      headers: headerObj
+    }
+    let endpoint = 'pets/'+ id;
+    let url = this.host + endpoint;
+    return this.http.get<any>(url);
+
+
+  }
 
   postPets(name: string, bname: string, age: number, gender: boolean, adopted: boolean, shelters_id: number, neutered: boolean, sname:string){
     let vData = {

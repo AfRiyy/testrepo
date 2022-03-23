@@ -20,6 +20,7 @@ import { CriteriaComponent } from './criteria/criteria.component';
 import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,

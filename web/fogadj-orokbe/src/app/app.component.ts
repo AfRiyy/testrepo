@@ -44,7 +44,7 @@ export class AppComponent {
         localStorage.setItem('currentUser', 
         JSON.stringify({token: res.data.token, name: res.data.name})
         );
-        this.router.navigate(['admin']);
+        this.router.navigate(['main']);
 
       }else {
         alert('Hiba! A belépés sikertelen!')
