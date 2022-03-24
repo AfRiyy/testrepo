@@ -42,7 +42,7 @@ export class PetsService {
     }
     let endpoint = 'pets/'+ id;
     let url = this.host + endpoint;
-    return this.http.get<any>(url);
+    return this.http.put<any>(url, data, header);
 
 
   }

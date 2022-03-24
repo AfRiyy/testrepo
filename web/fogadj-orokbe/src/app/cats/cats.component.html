@@ -15,20 +15,24 @@ style="
 
   <div class="card-deck row">
     <div class="card col-lg-6 p-1 text-center mb-2 " *ngFor="let pet of cats" >
-      <img src= "http://localhost:8000/{{pet.picture_path}}" class="card-img-top img-thumbnail" id="cat-picture" alt="Card image cap">
+      <img #path [attr.data-petpath]="pet.picture_path" src= "http://localhost:8000/images/pet/{{pet.picture_path}}.jpg" class="card-img-top img-thumbnail" id="cat-picture" alt="Card image cap">
+
       <div class="card-body" id="catInfo">
           <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
-            <h5 class="card-title">{{pet.name}}</h5>
+            <p #name [attr.data-petname]="pet.name" class="card-title">{{pet.name}}</p>
           </a>
-          <p class="card-text">{{pet.bname}}</p>
-          <p class="card-text">{{pet.age}} éves</p>
+          <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden">{{pet.id}}</h5>
+          <p #bname [attr.data-petbname]="pet.bname" class="card-text">{{pet.bname}}</p>  
+          <p #age [attr.data-petage]="pet.age"class="card-text">{{pet.age}} éves</p>
+          <p #gender [attr.data-petgender]="pet.gender" class="visually-hidden">{{pet.gender}}</p>
+          <p #neutered [attr.data-petneutered]="pet.neutered" class="visually-hidden"></p>
           <div *ngIf="pet.gender == false">
             <p class="card-text">hím</p>
           </div>
           <div *ngIf="pet.gender == true">
             <p class="card-text">nőstény</p>
         </div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getPetId(id, bname, path, name, age, gender, neutered)"
         class="btn btn-primary mt-2">
           Profil
         </button>
@@ -36,34 +40,36 @@ style="
     </div>
   </div>
 
-  Modal
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  *ngFor="let pet of cats" >
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog">
       <div class="modal-content">
         <form [formGroup]="adoptCatForm" (ngSubmit)="adoptCat()">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{pet.name}}</h5>
+          <!-- <h5 class="modal-title" id="exampleModalLabel">{{pet.name}}</h5> -->
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-start d-flex flex-row justify-content-between">
           
           <div>
-          <img src= "http://localhost:8000/{{pet.picture_path}}" class="" id="cat-picture" alt="Card image cap">
+          <!-- <img src= "http://localhost:8000{{pet.picture_path}}" class="" id="cat-picture" alt="Card image cap"> -->
           </div>
           <div class="">
-            <input type="hidden" class="form-control" formControlName="id" [value]="pet.id">
-              <p class="">Neve: {{pet.bname}}</p>
-              <p class="">Kora: {{pet.age}} éves</p>
-              <div *ngIf="pet.gender == false">
+            <!-- <input type="hidden" class="form-control" formControlName="id" [value]="pet.id"> -->
+              <p class="">{{this.petId}}</p>
+              <p class="">Neve: {{this.petName}}</p>
+              <p class="">Kora: {{this.petAge}} éves</p>
+              <div *ngIf="this.petGender == 0">
                 <p class="">Neme: hím</p>
               </div>
-              <div *ngIf="pet.gender == true">
+              <div *ngIf="this.petGender == 1">
                 <p class="">Neme: nőstény</p>
               </div>
-              <div *ngIf="pet.neutered == true">
+              <div *ngIf="this.petNeutered == 0">
                 <p>Ivartalanított-e: Igen</p>
               </div>
-              <div *ngIf="pet.neutered == false">
+              <div *ngIf="this.petNeutered == 1">
                 <p>Ivartalanított-e: Nem</p>
               </div>
               

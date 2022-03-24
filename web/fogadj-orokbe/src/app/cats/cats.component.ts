@@ -13,6 +13,13 @@ export class CatsComponent implements OnInit {
   pets: Pet[] = [];
   cats: Pet[] = [];
   adoptCatForm !: FormGroup;
+  petId!: any;
+  petBName!: any;
+  petPath!: any;
+  petName!: any;
+  petAge!: any;
+  petGender!: any;
+  petNeutered!: any;
 
 
 
@@ -32,15 +39,27 @@ export class CatsComponent implements OnInit {
         this.pets = res.data;
         this.pets.forEach(pet => {
           if (pet.sname == "házi macska" && pet.adopted == false) {
-            console.log(pet);
             this.cats.push(pet);
           }
         });
       })
   }
 
-  trackItem(pet: any): any {
-    return pet.id;
+  getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any){
+    this.petId = id.getAttribute('data-petid');
+    this.petBName = bname.getAttribute('data-petbname');
+    this.petPath = path.getAttribute('data-petpath');
+    this.petName = name.getAttribute('data-petname');
+    this.petAge = age.getAttribute('data-petage');
+    this.petGender = gender.getAttribute('data-petgender');
+    this.petNeutered = neutered.getAttribute('data-petneutered');
+  }
+
+  getPetModalData(petId: any){
+    this.petId = petId;
+    if (petId == this.cats.indexOf) {
+      
+    }
   }
 
   isLoggedIn() {
@@ -49,7 +68,7 @@ export class CatsComponent implements OnInit {
 
   adoptCat(){
     // let id = this.adoptCatForm.value.id;
-    let id = 10;
+    let id = this.petId;
     let adopted = true;
 
     this.petsService.updatePets(id, adopted)
