@@ -20,6 +20,8 @@ export class CatsComponent implements OnInit {
   petAge!: any;
   petGender!: any;
   petNeutered!: any;
+  petSheltersId!: any;
+  petSName!: any;
 
 
 
@@ -28,9 +30,6 @@ export class CatsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPets();
-    this.adoptCatForm = new FormGroup({
-      id: new FormControl('')
-    });
   }
 
   getAllPets() {
@@ -40,12 +39,13 @@ export class CatsComponent implements OnInit {
         this.pets.forEach(pet => {
           if (pet.sname == "házi macska" && pet.adopted == false) {
             this.cats.push(pet);
+            console.log(pet)
           }
         });
       })
   }
 
-  getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any){
+  getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any, shelter: any, sname:any){
     this.petId = id.getAttribute('data-petid');
     this.petBName = bname.getAttribute('data-petbname');
     this.petPath = path.getAttribute('data-petpath');
@@ -53,13 +53,8 @@ export class CatsComponent implements OnInit {
     this.petAge = age.getAttribute('data-petage');
     this.petGender = gender.getAttribute('data-petgender');
     this.petNeutered = neutered.getAttribute('data-petneutered');
-  }
-
-  getPetModalData(petId: any){
-    this.petId = petId;
-    if (petId == this.cats.indexOf) {
-      
-    }
+    this.petSheltersId = shelter.getAttribute('data-petshelter');
+    this.petSName = sname.getAttribute('data-petsname');
   }
 
   isLoggedIn() {
@@ -68,14 +63,31 @@ export class CatsComponent implements OnInit {
 
   adoptCat(){
     // let id = this.adoptCatForm.value.id;
-    let id = this.petId;
     let adopted = true;
+    this.petId = Number(this.petId);
+    this.petName = this.petName.toString();
+    this.petBName = this.petBName.toString();
+    this.petAge = Number(this.petAge);
+    this.petGender = Boolean(this.petGender);
+    this.petSheltersId = Number(this.petSheltersId);
+    this.petNeutered = Boolean(this.petNeutered);
+    this.petSName = this.petSName.toString();
 
-    this.petsService.updatePets(id, adopted)
+    console.log(this.petId);
+    console.log(this.petName);
+    console.log(this.petBName);
+    console.log(this.petAge);
+    console.log(this.petGender);
+    console.log(this.petSheltersId);
+    console.log(this.petNeutered);
+    console.log(this.petSName);
+
+
+    this.petsService.updatePets(this.petId, this.petName,this.petBName, this.petAge, this.petGender, adopted,  this.petSheltersId, this.petNeutered)
       .subscribe(res => {
-        console.log(res);
         if (res != 0) {
           alert("Sikeres frissítés");
+          window.location.reload();
         } else {
           alert("A frissítés sikertelen!");
         }

@@ -99,10 +99,10 @@ export class AdminComponent implements OnInit {
 
   newPet() {
     if (this.newPetForm.value.gender === "hím") {
-      this.gender2 = false;
+      this.gender2 = true;
     }
     if (this.newPetForm.value.gender === "nőstény") {
-      this.gender2 = true;
+      this.gender2 = false;
     }
     if (this.newPetForm.value.bname === "kuvasz") {
       this.sname = "kutya";
@@ -127,14 +127,22 @@ export class AdminComponent implements OnInit {
 
     this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2, this.sname)
       .subscribe(res => {
-        console.log(res);
         if (res != 0) {
           alert("Sikeres felvétel");
+          window.location.reload();
         } else {
           alert("A felvétel sikertelen!");
         }
       })
-  }
+    }
+
+    // deletePet(id: number) {
+    //   this.petsService.deleteStudent(id)
+    //   .subscribe(res => {
+    //     this.getGroupStudent(this.selectedClassgroup.value);
+    //     alert('A tanuló törölve');      
+    //   });
+    // }
 
 
 }

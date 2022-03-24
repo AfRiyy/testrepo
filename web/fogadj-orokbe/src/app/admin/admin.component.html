@@ -68,7 +68,6 @@
         <th scope="col">Állat kora</th>
         <th scope="col">Állat neme</th>
         <th scope="col">Örökbefogadott-e</th>
-        <th scope="col">Menhely</th>
       </tr>
     </thead>
 
@@ -78,13 +77,23 @@
         <td>{{pet.name}}</td>
         <td>{{pet.bname}}</td>
         <td>{{pet.age}} éves</td>
-        <td *ngIf="pet.gender == false">hím</td>
-        <td *ngIf="pet.gender == true"> nőstény</td>
+        <td *ngIf="pet.gender == true">hím</td>
+        <td *ngIf="pet.gender == false"> nőstény</td>
         <td *ngIf="pet.adopted==false">Örökbefogadható</td>
         <td *ngIf="pet.adopted==true">Örökbefogadott</td>
-        <div *ngFor="let shelter of shelters">
-        <td *ngIf="pet.shelter_id == shelter.id">{{shelter.id}}</td>
-        </div>
+
+        <td>
+          <!-- <button 
+          type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          (click)="onEdit(pet)"
+          class="btn btn-info mr-2">Edit</button> -->
+
+          <button 
+
+          class="btn btn-danger max-3">Delete</button>
+          <!-- (click)="deletePet(pet.id)" -->
+      </td>        
+
       </tr>
 
     </tbody>

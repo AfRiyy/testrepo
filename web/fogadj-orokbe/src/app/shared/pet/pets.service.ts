@@ -22,10 +22,16 @@ export class PetsService {
     return this.http.get<any>(this.host + endpoint)
   }
 
-  updatePets(id: number, adopted: boolean){
+  updatePets(id: number, name: string, bname: string, age: number, gender: boolean, adopted: boolean, shelters_id: number, neutered: boolean){
     let vData = {
       id: id,
-      adopted: adopted
+      name: name,
+      bname:bname,
+      age: age,
+      gender: gender,
+      adopted: adopted,
+      shelters_id: shelters_id,
+      neutered: neutered
     }
     let data = JSON.stringify(vData);
 
