@@ -68,9 +68,10 @@ export class CatsComponent implements OnInit {
     this.petName = this.petName.toString();
     this.petBName = this.petBName.toString();
     this.petAge = Number(this.petAge);
-    this.petGender = Boolean(this.petGender);
+    // this.petGender = Boolean(this.petGender);
+
     this.petSheltersId = Number(this.petSheltersId);
-    this.petNeutered = Boolean(this.petNeutered);
+    // this.petNeutered = Boolean(this.petNeutered);
     this.petSName = this.petSName.toString();
 
     console.log(this.petId);
@@ -86,10 +87,10 @@ export class CatsComponent implements OnInit {
     this.petsService.updatePets(this.petId, this.petName,this.petBName, this.petAge, this.petGender, adopted,  this.petSheltersId, this.petNeutered)
       .subscribe(res => {
         if (res != 0) {
-          alert("Sikeres frissítés");
-          window.location.reload();
+          alert("Sikeres örökbefogadás!");
+          // window.location.reload();
         } else {
-          alert("A frissítés sikertelen!");
+          alert("Az örökbefogadás sikertelen!");
         }
       })
   }

@@ -29,10 +29,10 @@ style="
           <p #shelter [attr.data-petshelter]="pet.shelters_id" ></p>
           <p #sname [attr.data-petsname]="pet.sname" class="visually-hidden"></p>
 
-          <div *ngIf="pet.gender == false">
+          <div *ngIf="pet.gender == true">
             <p class="card-text">Neme: nőstény</p>
           </div>
-          <div *ngIf="pet.gender == true">
+          <div *ngIf="pet.gender == false">
             <p class="card-text">Neme: hím</p>
         </div>
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getPetId(id, bname, path, name, age, gender, neutered, shelter, sname)"
@@ -64,16 +64,17 @@ style="
           <div class="p-4">
               <p class="">Neve: {{this.petName}}</p>
               <p class="">Kora: {{this.petAge}} éves</p>
-              <div *ngIf="this.petGender == 0">
+              <p class="">Fajtája: {{this.petBName}}</p>
+              <div *ngIf="this.petGender == false">
                 <p class="">Neme: hím</p>
               </div>
-              <div *ngIf="this.petGender == 1">
+              <div *ngIf="this.petGender == true">
                 <p class="">Neme: nőstény</p>
               </div>
-              <div *ngIf="this.petNeutered == 1">
+              <div *ngIf="this.petNeutered == false">
                 <p>Ivartalanított-e: Igen</p>
               </div>
-              <div *ngIf="this.petNeutered == 0">
+              <div *ngIf="this.petNeutered == true">
                 <p>Ivartalanított-e: Nem</p>
               </div>
               
@@ -84,7 +85,7 @@ style="
         <p class="text-center" *ngIf="!isLoggedIn()">Ha szeretnéd örökbefogadni a cicát, előbb regisztrálj vagy jelentkezz be!!</p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
-          <button type="submit" class="btn btn-primary" *ngIf="isLoggedIn()" (click)="adoptCat()">Örökbefogadom!</button>
+          <button type="submit" class="btn btn-primary" *ngIf="isLoggedIn()" (click)="adoptCat()" data-bs-dismiss="modal">Örökbefogadom!</button>
         </div>
 
     </div>

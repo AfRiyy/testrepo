@@ -99,10 +99,10 @@ export class AdminComponent implements OnInit {
 
   newPet() {
     if (this.newPetForm.value.gender === "hím") {
-      this.gender2 = true;
+      this.gender2 = false;
     }
     if (this.newPetForm.value.gender === "nőstény") {
-      this.gender2 = false;
+      this.gender2 = true;
     }
     if (this.newPetForm.value.bname === "kuvasz") {
       this.sname = "kutya";
