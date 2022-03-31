@@ -45,6 +45,8 @@ export class CatsComponent implements OnInit {
       })
   }
 
+  
+
   getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any, shelter: any, sname:any){
     this.petId = id.getAttribute('data-petid');
     this.petBName = bname.getAttribute('data-petbname');
@@ -62,26 +64,15 @@ export class CatsComponent implements OnInit {
   }
 
   adoptCat(){
-    // let id = this.adoptCatForm.value.id;
     let adopted = true;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();
     this.petBName = this.petBName.toString();
     this.petAge = Number(this.petAge);
-    // this.petGender = Boolean(this.petGender);
 
     this.petSheltersId = Number(this.petSheltersId);
-    // this.petNeutered = Boolean(this.petNeutered);
     this.petSName = this.petSName.toString();
 
-    console.log(this.petId);
-    console.log(this.petName);
-    console.log(this.petBName);
-    console.log(this.petAge);
-    console.log(this.petGender);
-    console.log(this.petSheltersId);
-    console.log(this.petNeutered);
-    console.log(this.petSName);
 
 
     this.petsService.updatePets(this.petId, this.petName,this.petBName, this.petAge, this.petGender, adopted,  this.petSheltersId, this.petNeutered)

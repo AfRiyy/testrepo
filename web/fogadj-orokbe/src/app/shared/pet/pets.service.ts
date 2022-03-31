@@ -82,4 +82,23 @@ export class PetsService {
     return this.http.post<any>(url, data, header);
   }
 
+  deletePet(id: number) {
+    let data:any = localStorage.getItem('currentUser');
+    let currentUser = JSON.parse(data);
+    let token = currentUser.token;    
+    let headerObj = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    const httpOption = {
+      headers: headerObj
+    };
+
+    let endpoint = 'pets/';
+    return this.http.delete<any>(this.host + endpoint + id, httpOption)
+    .pipe(map( res => {
+      return res;
+    }))
+  }
+
 }

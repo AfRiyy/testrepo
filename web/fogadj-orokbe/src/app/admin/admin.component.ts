@@ -30,7 +30,17 @@ export class AdminComponent implements OnInit {
   neutered: any;
   sname!: string;
   shelters_id: any;
-  shelter_name!:string;
+  shelter_name!: string;
+
+  petId!: any;
+  petBName!: any;
+  petPath!: any;
+  petName!: any;
+  petAge!: any;
+  petGender!: any;
+  petNeutered!: any;
+  petSheltersId!: any;
+  petSName!: any;
 
   constructor(
     private petsService: PetsService,
@@ -71,7 +81,7 @@ export class AdminComponent implements OnInit {
         this.shelters.forEach(shelter => {
           this.shelters2.push(shelter);
           // console.log(shelter);
-          
+
         });
       })
   }
@@ -134,15 +144,51 @@ export class AdminComponent implements OnInit {
           alert("A felvétel sikertelen!");
         }
       })
-    }
+  }
 
-    // deletePet(id: number) {
-    //   this.petsService.deleteStudent(id)
-    //   .subscribe(res => {
-    //     this.getGroupStudent(this.selectedClassgroup.value);
-    //     alert('A tanuló törölve');      
-    //   });
-    // }
+  deletePet(id: number) {
+    this.petsService.deletePet(id)
+      .subscribe(res => {
+        if (res != 0) {
+          alert("Sikeres törlés");
+          window.location.reload();
+        } else {
+          alert("A törlés sikertelen!");
+        }
+      })
+  }
 
+  onEdit(pet: any) {
+
+    this.newPetForm.controls['name'].setValue(pet.name);
+    this.newPetForm.controls['bname'].setValue(pet.bname);
+    this.newPetForm.controls['age'].setValue(pet.age);
+    this.newPetForm.controls['gender'].setValue(pet.gender);
+    this.newPetForm.controls['shelters_id'].setValue(pet.shelters_id);
+    this.newPetForm.controls['neutered'].setValue(pet.neutered);
+  }
+
+  updatePet() {
+    let adopted = false;
+    this.petId = Number(this.petId);
+    this.petName = this.petName.toString();
+    this.petBName = this.petBName.toString();
+    this.petAge = Number(this.petAge);
+
+    this.petSheltersId = Number(this.petSheltersId);
+    this.petSName = this.petSName.toString();
+
+
+
+    this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
+      .subscribe(res => {
+        if (res != 0) {
+          alert("Sikeres frissítés!");
+          // window.location.reload();
+        } else {
+          alert("A frissítés sikertelen!");
+        }
+      })
+  }
 
 }
