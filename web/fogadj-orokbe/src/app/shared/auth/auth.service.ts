@@ -105,9 +105,7 @@ export class AuthService {
       let data:any = localStorage.getItem('currentUser');
       let currentUser = JSON.parse(data);
       let isAdmin = currentUser.admin;
-      console.log(currentUser);
-      console.log(currentUser.admin);
-      if (isAdmin) {
+      if (isAdmin != null && isAdmin != '' && isAdmin != undefined && isAdmin) {
         return true;
       } else {
         return false;

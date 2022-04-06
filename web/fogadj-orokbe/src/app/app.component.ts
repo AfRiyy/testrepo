@@ -21,6 +21,7 @@ export class AppComponent {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.isAdmin())
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: ['']

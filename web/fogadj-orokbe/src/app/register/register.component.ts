@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   model!: NgbDateStruct;
   month!:string;
   day!:string;
+  user:any;
 
   constructor(
     private auth: AuthService,
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = new FormGroup({
 
-      user: new FormControl('', [Validators.required, Validators.pattern('[a-zéáűőúöüóA-ZÉÁŰŐÚÖÜÓ0-9]+')]),
+      user: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern('[a-zéáűőúöüóA-ZÉÁŰŐÚÖÜÓ0-9]+')]),
       pass: new FormControl('', Validators.required),
       pass2: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),

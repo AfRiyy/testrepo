@@ -19,7 +19,7 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/dogs">Kutyák</a>
             </li>
-            <div *ngIf="isLoggedIn() || isAdmin()">
+            <div *ngIf="isLoggedIn() && isAdmin()">
 
             <li class="nav-item">
               <a class="nav-link" routerLink="/admin">Hozzáadás</a>
