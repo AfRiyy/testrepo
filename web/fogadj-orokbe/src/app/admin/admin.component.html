@@ -11,11 +11,30 @@
     <div class="input-group mb-3">
       <select class="form-select" (change)="changeBName($event)" formControlName="bname">
         <option value="">Válassz fajtát: </option>
-        <option *ngFor="let bname of Bname" [ngValue]="bname">
+        <!-- <option *ngFor="let bname of Bname" [ngValue]="bname">
           {{bname }}
+        </option> -->
+        <option *ngFor="let breed of breeds" [ngValue]="breed.id">
+          {{breed.bname}}
         </option>
       </select>
     </div>
+
+<!--  -->
+<label for="shelters_id" class="form-label">Menhely</label>
+<div class="input-group mb-3">
+  <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
+    <option value="">Válassz menhelyet: </option>
+    <option *ngFor="let shelter of shelters" [ngValue]="shelter.id">
+
+      {{shelter.shelter_name }}
+    </option>
+  </select>
+</div>
+
+<!--  -->
+
+
 
     <div class="mb-3">
       <label for="age" class="form-label">Kor</label>
@@ -75,12 +94,12 @@
 
     <tbody>
       <tr *ngFor="let pet of pets">
-
+        
         <td>{{pet.name}}</td>
         <td>{{pet.bname}}</td>
         <td>{{pet.age}} éves</td>
-        <td *ngIf="pet.gender == true">hím</td>
-        <td *ngIf="pet.gender == false"> nőstény</td>
+        <td *ngIf="pet.gender == false">hím</td>
+        <td *ngIf="pet.gender == true"> nőstény</td>
         <td *ngIf="pet.adopted==false">Örökbefogadható</td>
         <td *ngIf="pet.adopted==true">Örökbefogadott</td>
         <td *ngIf="pet.neutered==true">Igen</td>
@@ -91,7 +110,7 @@
           type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
           (click)="onEdit(pet)"
           class="btn btn-info mr-2">Edit</button> -->
-
+          <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden w-0" >{{pet.id}}</h5>
           <button 
           (click)="deletePet(pet.id)"
           class="btn btn-danger max-3">Törlés</button>
@@ -113,11 +132,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Állat adatainak frissítése</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="newPetForm" (ngSubmit)="newPet()">
+        <form [formGroup]="updatePetForm" (ngSubmit)="updatePet()">
+
+          <div class="mb-3 visually-hidden w-0">
+            <label for="id" class="form-label">id</label>
+            <input type="text" class="form-control" formControlName="id" required>
+      
+          </div>
           <div class="mb-3">
             <label for="name" class="form-label">Név</label>
             <input type="text" class="form-control" formControlName="name" required>

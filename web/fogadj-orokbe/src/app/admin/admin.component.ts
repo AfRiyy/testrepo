@@ -4,6 +4,8 @@ import { Pet } from '../shared/pet/pet';
 import { PetsService } from '../shared/pet/pets.service';
 import { ShelterInterface } from '../shared/shelter/shelter-interface';
 import { ShelterService } from '../shared/shelter/shelter.service';
+import { BreedInterface } from '../shared/breed/breed-interface';
+import { BreedService } from '../shared/breed/breed.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,14 +15,18 @@ import { ShelterService } from '../shared/shelter/shelter.service';
 export class AdminComponent implements OnInit {
 
   newPetForm !: FormGroup
+  updatePetForm !: FormGroup
   pets: Pet[] = [];
   cats: Pet[] = [];
 
   shelters: ShelterInterface[] = [];
   shelters2: ShelterInterface[] = [];
 
-  gender2!: boolean;
-  neutered2!: boolean;
+  breeds: BreedInterface[] = [];
+  breeds2: BreedInterface[] = [];
+
+  gender2!: any;
+  neutered2!: any;
 
   Bname: any = ["sziámi", "kuvasz"];
   bname: any;
@@ -32,26 +38,18 @@ export class AdminComponent implements OnInit {
   shelters_id: any;
   shelter_name!: string;
 
-  petId!: any;
-  petBName!: any;
-  petPath!: any;
-  petName!: any;
-  petAge!: any;
-  petGender!: any;
-  petNeutered!: any;
-  petSheltersId!: any;
-  petSName!: any;
-
   constructor(
     private petsService: PetsService,
-    private shelt: ShelterService
+    private shelt: ShelterService,
+    private breedService: BreedService,
   ) { }
 
 
   ngOnInit(): void {
     this.getAllShelters();
     this.getAllPets();
-    this.petsService.getPets();
+    this.getAllBreeds();
+
     this.newPetForm = new FormGroup({
       name: new FormControl(''),
       bname: new FormControl(''),
@@ -59,7 +57,16 @@ export class AdminComponent implements OnInit {
       gender: new FormControl(''),
       shelters_id: new FormControl(''),
       neutered: new FormControl(''),
-      adopted: new FormControl(''),
+      sname: new FormControl('')
+    });
+    this.updatePetForm = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl(''),
+      bname: new FormControl(''),
+      age: new FormControl(''),
+      gender: new FormControl(''),
+      shelters_id: new FormControl(''),
+      neutered: new FormControl(''),
       sname: new FormControl('')
     });
   }
@@ -81,6 +88,17 @@ export class AdminComponent implements OnInit {
         this.shelters.forEach(shelter => {
           this.shelters2.push(shelter);
           // console.log(shelter);
+
+        });
+      })
+  }
+  getAllBreeds() {
+    this.breedService.getBreeds()
+      .subscribe(res => {
+        this.breeds = res.data;
+        this.breeds.forEach(breed => {
+          this.breeds2.push(breed);
+          console.log(breed);
 
         });
       })
@@ -108,11 +126,12 @@ export class AdminComponent implements OnInit {
   }
 
   newPet() {
+    
     if (this.newPetForm.value.gender === "hím") {
-      this.gender2 = false;
+      this.gender2 = 0;
     }
     if (this.newPetForm.value.gender === "nőstény") {
-      this.gender2 = true;
+      this.gender2 = 1;
     }
     if (this.newPetForm.value.bname === "kuvasz") {
       this.sname = "kutya";
@@ -122,10 +141,10 @@ export class AdminComponent implements OnInit {
     }
 
     if (this.newPetForm.value.neutered === "igen") {
-      this.neutered2 = true;
+      this.neutered2 = 1;
     }
     if (this.newPetForm.value.neutered === "nem") {
-      this.neutered2 = false;
+      this.neutered2 = 0;
     }
 
     let name = this.newPetForm.value.name;
@@ -147,6 +166,7 @@ export class AdminComponent implements OnInit {
   }
 
   deletePet(id: number) {
+    console.log(id);
     this.petsService.deletePet(id)
       .subscribe(res => {
         if (res != 0) {
@@ -160,31 +180,49 @@ export class AdminComponent implements OnInit {
 
   onEdit(pet: any) {
 
-    this.newPetForm.controls['name'].setValue(pet.name);
-    this.newPetForm.controls['bname'].setValue(pet.bname);
-    this.newPetForm.controls['age'].setValue(pet.age);
-    this.newPetForm.controls['gender'].setValue(pet.gender);
-    this.newPetForm.controls['shelters_id'].setValue(pet.shelters_id);
-    this.newPetForm.controls['neutered'].setValue(pet.neutered);
+    this.updatePetForm.controls['id'].setValue(pet.id);
+    this.updatePetForm.controls['name'].setValue(pet.name);
+    this.updatePetForm.controls['bname'].setValue(pet.bname);
+    this.updatePetForm.controls['age'].setValue(pet.age);
+    this.updatePetForm.controls['gender'].setValue(pet.gender);
+    this.updatePetForm.controls['shelters_id'].setValue(pet.shelters_id);
+    this.updatePetForm.controls['neutered'].setValue(pet.neutered);
   }
 
   updatePet() {
-    let adopted = false;
-    this.petId = Number(this.petId);
-    this.petName = this.petName.toString();
-    this.petBName = this.petBName.toString();
-    this.petAge = Number(this.petAge);
 
-    this.petSheltersId = Number(this.petSheltersId);
-    this.petSName = this.petSName.toString();
+    if (this.updatePetForm.value.gender === "hím") {
+      this.gender2 = 0;
+    }
+    if (this.updatePetForm.value.gender === "nőstény") {
+      this.gender2 = 1;
+    }
+    if (this.updatePetForm.value.bname === "kuvasz") {
+      this.sname = "kutya";
+    }
+    if (this.updatePetForm.value.bname === "sziámi") {
+      this.sname = "házi macska";
+    }
 
+    if (this.updatePetForm.value.neutered === "igen") {
+      this.neutered2 = 1;
+    }
+    if (this.newPetForm.value.neutered === "nem") {
+      this.neutered2 = 0;
+    }
 
+    let id = this.updatePetForm.value.id;
+    let name = this.updatePetForm.value.name;
+    let bname = this.updatePetForm.value.bname;
+    let age = this.updatePetForm.value.age;
+    let adopted:any = 0;
+    let shelters_id = this.updatePetForm.value.shelters_id;
 
-    this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
+    this.petsService.updatePets(id, name, bname, age, this.gender2, adopted, shelters_id, this.neutered2)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres frissítés!");
-          // window.location.reload();
+          window.location.reload();
         } else {
           alert("A frissítés sikertelen!");
         }

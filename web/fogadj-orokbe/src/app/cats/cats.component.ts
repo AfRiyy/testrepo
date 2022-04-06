@@ -79,7 +79,7 @@ export class CatsComponent implements OnInit {
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres örökbefogadás!");
-          // window.location.reload();
+          window.location.reload();
         } else {
           alert("Az örökbefogadás sikertelen!");
         }

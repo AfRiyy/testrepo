@@ -97,10 +97,21 @@ export class AuthService {
         this.router.navigate(['main']);
       })
     }
+
     isAdmin(){
+      if(localStorage.getItem('currentUser') === null){
+        return false;
+      }
       let data:any = localStorage.getItem('currentUser');
       let currentUser = JSON.parse(data);
-      // console.log(currentUser.admin);
+      let isAdmin = currentUser.admin;
+      console.log(currentUser);
+      console.log(currentUser.admin);
+      if (isAdmin) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

@@ -31,6 +31,10 @@ export class AppComponent {
     return this.auth.isLoggedIn()
   }
 
+  isAdmin() {
+    return this.auth.isAdmin()
+  }
+
   login() {
     let username = this.loginForm.value.username;
     let password = this.loginForm.value.password;
