@@ -1,0 +1,25 @@
+<div class="container-fluid bg-white p-2" >
+  <h2 class="p-5 bg-info mt-2">Menhelyek</h2>
+
+  <div id="zip-search" class="d-flex justify-content-center bg-white my-4">
+    <h5>Szűrés irányítószám alapján:</h5>
+    <input type="text" [(ngModel)]="zip" class="form-control">
+  </div>
+  
+    <div class="card my-3" *ngFor="let shelter of shelters | zipfilter: zip">
+      <div class="card-header bg-info">
+        {{shelter.shelter_name}}
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{shelter.shelter_zip}}</p>
+        <p class="card-text">Cím: {{shelter.shelter_street_address}}</p>
+        <p class="card-text">Telefon: {{shelter.shelter_phone}}</p>
+        <p class="card-text">weboldal: {{shelter.shelter_website}}</p>
+        <p class="card-text">Facebook: {{shelter.shelter_facebook}}</p>
+      </div>
+    </div>
+  </div>
+
+
+
+
