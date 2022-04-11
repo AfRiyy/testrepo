@@ -11,8 +11,9 @@ import { AuthService } from '../app/shared/auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  title = 'FogadjÖrökbe'
   loginForm !: FormGroup
+  mobile = false;
 
   constructor(
     private auth: AuthService,
@@ -26,6 +27,9 @@ export class AppComponent {
       username: [''],
       password: ['']
     });
+    if (window.screen.width === 360) { // 768px portrait
+      this.mobile = true;
+    }
   }
 
   isLoggedIn() {
@@ -39,15 +43,13 @@ export class AppComponent {
   login() {
     let username = this.loginForm.value.username;
     let password = this.loginForm.value.password;
-    console.log(username)
-    console.log(password)
 
     this.auth.login(username, password)
     .subscribe(res => {
       console.log(res);
       if (res.success) {
         localStorage.setItem('currentUser', 
-        JSON.stringify({token: res.data.token, name: res.data.name})
+        JSON.stringify({token: res.data.token, name: res.data.name, admin: res.data.admin})
         );
         this.router.navigate(['main']);
 

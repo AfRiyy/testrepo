@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
   gender2!: any;
   neutered2!: any;
 
-  Bname: any = ["sziámi", "kuvasz"];
+  file!:File;
   bname: any;
   Gender: any = ["hím", "nőstény"];
   gender: any;
@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
       gender: new FormControl(''),
       shelters_id: new FormControl(''),
       neutered: new FormControl(''),
-      sname: new FormControl('')
+      image: new FormControl('')
     });
     this.updatePetForm = new FormGroup({
       id: new FormControl(''),
@@ -125,6 +125,10 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  handleFileInput(event:any) {
+    this.file = event.target.files[0];
+  }
+
   newPet() {
     
     if (this.newPetForm.value.gender === "hím") {
@@ -132,12 +136,6 @@ export class AdminComponent implements OnInit {
     }
     if (this.newPetForm.value.gender === "nőstény") {
       this.gender2 = 1;
-    }
-    if (this.newPetForm.value.bname === "kuvasz") {
-      this.sname = "kutya";
-    }
-    if (this.newPetForm.value.bname === "sziámi") {
-      this.sname = "házi macska";
     }
 
     if (this.newPetForm.value.neutered === "igen") {
@@ -152,13 +150,14 @@ export class AdminComponent implements OnInit {
     let age = this.newPetForm.value.age;
     let adopted = false;
     let shelters_id = this.newPetForm.value.shelters_id;
+    console.log(this.file);
 
 
-    this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2, this.sname)
+    this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres felvétel");
-          window.location.reload();
+          // window.location.reload();
         } else {
           alert("A felvétel sikertelen!");
         }
@@ -166,7 +165,6 @@ export class AdminComponent implements OnInit {
   }
 
   deletePet(id: number) {
-    console.log(id);
     this.petsService.deletePet(id)
       .subscribe(res => {
         if (res != 0) {
@@ -196,12 +194,6 @@ export class AdminComponent implements OnInit {
     }
     if (this.updatePetForm.value.gender === "nőstény") {
       this.gender2 = 1;
-    }
-    if (this.updatePetForm.value.bname === "kuvasz") {
-      this.sname = "kutya";
-    }
-    if (this.updatePetForm.value.bname === "sziámi") {
-      this.sname = "házi macska";
     }
 
     if (this.updatePetForm.value.neutered === "igen") {

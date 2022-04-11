@@ -11,30 +11,11 @@
     <div class="input-group mb-3">
       <select class="form-select" (change)="changeBName($event)" formControlName="bname">
         <option value="">Válassz fajtát: </option>
-        <!-- <option *ngFor="let bname of Bname" [ngValue]="bname">
-          {{bname }}
-        </option> -->
-        <option *ngFor="let breed of breeds" [ngValue]="breed.id">
+        <option *ngFor="let breed of breeds" [ngValue]="breed.bname">
           {{breed.bname}}
         </option>
       </select>
     </div>
-
-<!--  -->
-<label for="shelters_id" class="form-label">Menhely</label>
-<div class="input-group mb-3">
-  <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
-    <option value="">Válassz menhelyet: </option>
-    <option *ngFor="let shelter of shelters" [ngValue]="shelter.id">
-
-      {{shelter.shelter_name }}
-    </option>
-  </select>
-</div>
-
-<!--  -->
-
-
 
     <div class="mb-3">
       <label for="age" class="form-label">Kor</label>
@@ -73,6 +54,11 @@
       </select>
     </div>
 
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Kép feltöltése</label>
+      <input class="form-control" type="file" id="formFile" accept="image/jpeg, image/png, image/jpg" (change)="handleFileInput($event)" formControlName="image">
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Hozzáad</button>
   </form>
@@ -106,10 +92,6 @@
         <td *ngIf="pet.neutered==false">Nem</td>
 
         <td>
-          <!-- <button 
-          type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          (click)="onEdit(pet)"
-          class="btn btn-info mr-2">Edit</button> -->
           <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden w-0" >{{pet.id}}</h5>
           <button 
           (click)="deletePet(pet.id)"
@@ -153,8 +135,8 @@
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeBName($event)" formControlName="bname">
               <option value="">Válassz fajtát: </option>
-              <option *ngFor="let bname of Bname" [ngValue]="bname">
-                {{bname }}
+              <option *ngFor="let breed of breeds" [ngValue]="breed.bname" value="{{breed.bname}}">
+                {{breed.bname}}
               </option>
             </select>
           </div>
@@ -168,7 +150,7 @@
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeGender($event)" formControlName="gender">
               <option value="">Válassz nemet: </option>
-              <option *ngFor="let gender of Gender" [ngValue]="gender">
+              <option *ngFor="let gender of Gender" [ngValue]="gender" value="{{gender}}">
                 {{gender }}
               </option>
             </select>
@@ -178,7 +160,7 @@
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
               <option value="">Válassz menhelyet: </option>
-              <option *ngFor="let shelter of shelters" [ngValue]="shelter.id">
+              <option *ngFor="let shelter of shelters" [ngValue]="shelter.id" value="{{shelter.shelter_name }}">
       
                 {{shelter.shelter_name }}
               </option>
@@ -190,7 +172,7 @@
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeNeutered($event)" formControlName="neutered">
               <option value="">Ivartalanított?</option>
-              <option *ngFor="let neutered of Neutered" [ngValue]="neutered">
+              <option *ngFor="let neutered of Neutered" [ngValue]="neutered" value="{{neutered}}">
                 {{neutered }}
               </option>
             </select>

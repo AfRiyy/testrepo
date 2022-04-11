@@ -57,7 +57,7 @@ export class DogsComponent implements OnInit {
   }
 
   adoptDog(){
-    // let id = this.adoptCatForm.value.id;
+
     let adopted = true;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();

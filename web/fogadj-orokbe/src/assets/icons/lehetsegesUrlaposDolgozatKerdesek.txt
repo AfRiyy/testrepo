@@ -1,0 +1,137 @@
+Lehetséges dolgozatkérdések
+
+Dolgozat kérdések március 24.
+Utolsó dolgozat két részből áll
+	űrlapos 
+	gyakorlati
+200%
+
+1.)Ketten dolgoznak egy Github tárolóban. A társa már feltöltötte a munkáját.
+Ön azonban nem tudja. Mi lehet a probléma?
+Le kell pullolni az ő verzióját és mergelni kell.
+
+2.)Adott egy dokumentációban a következő végpont /api/valami/{id}.
+Mit jelent a "{", "}" kapcsoszárójel páros?
+Szintaktikai elem.
+
+3.)Ketten dolgoznak egy GitHub tárolóban ugyanazon a branchen.
+A társa már feltöltötte a munkáját. Hogyan tölti le a változtatásokat?
+
+git pull origin master
+
+4.)Adott a következő kód <app-employees></app-employees>
+Mit illeszt be a kód?
+
+Egy .html fájlban, az employees komponens beillesztése.
+
+5.)Mit csinál a következő utasítás, ha létezik a helyi könyvtárban egy database könyvtár?
+copy nul database\database.sqlite
+
+6.) Szeretne használatba venni egy Laravel API-t
+Mit csinál a következő parancs?
+php artisan key:generate
+
+Kulcsot generál a titkosító algoritmusok számára
+
+7.)Szeretné használatba venni egy Laravel API-t
+A következő parancs hol generál kulcsot?
+php artisan key:generate
+.env
+
+8.)Mi a különbség a két parancs között?
+git remote origin set-url http://github.com/vki/vmi
+git remote origin add http://github.com/vki/vmi
+
+Az elsővel lehet csak változtatni.
+
+9.)Mit csinál a következő parancs
+ng serve -o
+
+Elindítja az Angular beépített szerverét és megnyitja a böngészőben.
+
+10.)Szeretnénk egy letöltött Angular alkalmazást
+használni. Hogyan telepítjük a függőségeket?
+npm install
+
+11.)Adott két kód. Melyiket használjuk JavaScriptben?
+{"name" : "imre"}
+{name: "imre"} (ez a helyes a JavaScriptben nem kell idézőjelbe tenni a kulcsokat)
+
+12.)Mit csinál a következő parancs?
+ng g c books
+
+egy books nevű Angular komponenst generál
+
+13.)Mit csinál a következő parancs?
+ng g s shared/api
+Egy szolgáltatást csinál api néven a shared mappában
+
+14.)Mire való a package.json file?
+A projekt tulajdonságait és függőségeit tartalmazza. 
+
+15.)Mit csinál a következő parancs?
+ng new booker
+booker nevű Angular projektet hoz létre
+
+16.)Milyen JavaScript fügvénnyel lehet REST API-ról lekérni adatokat?
+fetch()
+
+17.)Milyen Angular osztállyal lehet lekérni REST API-ról adatokat?
+HttpClient
+
+18.)A TypeScript kódban mire való a "!" karakter:
+valamiFrom !: FormGroup
+
+Elvetjük a hibát, ami szerint nincs kezdőértéke.
+
+19.)Az Angular alkalmazásokban az osztályok előtt "@" karakterrel kezdődő szavak vannak. Mik ezek?
+dekorátor(ok)
+
+20.)Az Angular alkalmazásokban az osztályok előtt "@" karakterrel kezdődő szavak vannak. Mit dekorálnak?
+osztályt
+
+21.)Ha NodeJs projektnél telepítünk egy csomagot,
+mit csinál a --save-dev kapcsoló?
+Jelezzük hogy a csomagot fejlesztési időben használjuk.
+
+22.)Milyen parancssori paranccsal fordítjuk a TypeScript fájlokat JavaScript állományokká.
+tsc 
+
+23.)Hogyan futtathatunk egy NodeJS programot parancssorból?
+node prognev
+
+24.)Milyen szabványon alapul a NodeJS
+CommonJS
+
+25.)Milyen szabványon alapul a böngészőben futó JavaScript?
+ECMAScript
+
+
+__Tesztelés__
+
+Angular projekt:
+
+ng new teti 
+nem kell routing
+
+Jasmine 
+https://jasmine.github.io/
+
+Karma
+https://karma-runner.github.io/latest/index.html
+	Teszt futtató keretrendszer
+
+spec.js (jasmine így keresi a teszt fájlokat)
+
+
+
+
+
+
+
+
+
+
+
+
+

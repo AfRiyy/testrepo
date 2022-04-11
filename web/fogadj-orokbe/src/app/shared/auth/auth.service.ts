@@ -38,8 +38,6 @@ export class AuthService {
 
 
     login(user: string, password: string) {
-      console.log(user)
-      console.log(password)
 
       let authData = {
         user: user,

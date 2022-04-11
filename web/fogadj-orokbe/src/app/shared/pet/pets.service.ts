@@ -53,7 +53,7 @@ export class PetsService {
 
   }
 
-  postPets(name: string, bname: string, age: number, gender: boolean, adopted: boolean, shelters_id: number, neutered: boolean, sname:string){
+  postPets(name: string, bname: string, age: number, gender: boolean, adopted: boolean, shelters_id: number, neutered: boolean){
     let vData = {
       name: name,
       bname:bname,
@@ -61,8 +61,7 @@ export class PetsService {
       gender: gender,
       adopted: adopted,
       shelters_id: shelters_id,
-      neutered: neutered,
-      sname:sname
+      neutered: neutered
     }
     let data = JSON.stringify(vData);
 
