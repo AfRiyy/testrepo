@@ -2,6 +2,7 @@
 ## FogadjÖrökbe App
 Ez az applikáció menhelyi állatok adatbázisban való tárolását, és az örökbefogadási folyamat elindítását teszi lehetővé.
 
+## Dokumentáció elérési útja : doc/
 
 ### Készítők
 * [Lehoczki Patrícia](https://github.com/lehoczkipatricia)
