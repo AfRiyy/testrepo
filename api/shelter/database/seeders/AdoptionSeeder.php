@@ -13,20 +13,6 @@ class AdoptionSeeder extends Seeder
      */
     public function run()
     {
-        Adoption::factory()->make([
-            "date"=> $this->faker->date(),
-            "pets_id"=> 3,
-            "users_id"=> 1
-        ]);
-        Adoption::factory()->make([
-            "date"=> $this->faker->date(),
-            "pets_id"=> 5,
-            "users_id"=> 3
-        ]);
-        Adoption::factory()->make([
-            "date"=> $this->faker->date(),
-            "pets_id"=> 7,
-            "users_id"=> 6
-        ]);
+        \App\Models\Adoption::factory()->count(10)->create();
     }
 }

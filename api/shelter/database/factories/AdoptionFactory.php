@@ -14,9 +14,9 @@ class AdoptionFactory extends Factory
     public function definition()
     {
         return [
-            "date"=> $this->faker->date(),
-            "pets_id"=> $this->faker->rand(1,10),
-            "users_id"=> $this->faker->rand(1,10)
+            "date" => $this->faker->date(),
+            "pets_id" => rand(1, 10),
+            "users_id" => rand(1, 10)
         ];
     }
 }
