@@ -23,6 +23,11 @@ A következő lépésben létre kell hoznunk egy shelter nevű adatbázist, hogy
 
 Ez a parancs létrehozza a szükséges táblákat. Beimportálhatunk egy minta adatbázist, amit az api/draft/shelter.sql fájl tartalmaz, vagy Seeder segítségével generálhatunk véletlenszerű adatokat (ezekhez nem fognak képek tartozni!).
 
+### Adatbázis feltöltés előre elkészített mentéssel.
+A database mappa tartalmaz egy adatbázis mentést adatbazis_mentes.sql néven. Ebben egy admin felhasználó található, admin jelszóval, 4 állat, 1 menhely, és egy örökbefogadás.
+A 4 állathoz tartozik továbbá 4 különböző kép. A storage mappát össze kell fésülni az api/shelter/storage könyvtárral. Ekkor a storage/app/images mappában lesznek a képek, amiket elér a front-end a * php artisan storage:link parancs után.
+
+### Adatbázis feltöltés seederekkel
 Seeder parancsok, a szükséges táblával ellátva:
 
 * php artisan db:seed --class=SpecieSeeder
