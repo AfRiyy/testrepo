@@ -12,9 +12,11 @@ describe('AuthService', () => {
       HttpClientModule
     ]});
     service = TestBed.inject(AuthService);
+    
   });
 
-  it('should be created', () => {
+
+  it('a szolgáltatás elkészül', () => {
     expect(service).toBeTruthy();
   });
 });

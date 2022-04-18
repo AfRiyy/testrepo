@@ -18,7 +18,7 @@ describe('BreedService', () => {
     service = TestBed.inject(BreedService);
   });
 
-  it('should be created', () => {
+  it('a szolgáltatás elkészül', () => {
     expect(service).toBeTruthy();
   });
 });

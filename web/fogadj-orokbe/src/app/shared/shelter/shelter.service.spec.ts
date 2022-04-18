@@ -18,7 +18,7 @@ describe('ShelterService', () => {
     service = TestBed.inject(ShelterService);
   });
 
-  it('should be created', () => {
+  it('a szolgáltatás elkészül', () => {
     expect(service).toBeTruthy();
   });
 });

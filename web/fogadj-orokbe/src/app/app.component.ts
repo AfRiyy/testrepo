@@ -46,7 +46,6 @@ export class AppComponent {
 
     this.auth.login(username, password)
     .subscribe(res => {
-      console.log(res);
       if (res.success) {
         localStorage.setItem('currentUser', 
         JSON.stringify({token: res.data.token, name: res.data.name, admin: res.data.admin})
@@ -54,7 +53,7 @@ export class AppComponent {
         this.router.navigate(['main']);
 
       }else {
-        alert('Hiba! A belépés sikertelen!')
+        alert("Hiba! A belépés sikertelen!")
       }
     })
 

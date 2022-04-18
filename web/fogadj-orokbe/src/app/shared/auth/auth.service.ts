@@ -73,10 +73,8 @@ export class AuthService {
         return;
       }
       let data:any = localStorage.getItem('currentUser');
-      console.log(data);
       localStorage.removeItem('currentUser');
       let currentUser = JSON.parse(data);
-      console.log(data);
       let token = currentUser.token;
 
       let headerObj = new HttpHeaders({
@@ -91,7 +89,6 @@ export class AuthService {
 
       return this.http.post<any>(url, '', httpOption)
       .subscribe(res => {
-        console.log(res);
         this.router.navigate(['main']);
       })
     }

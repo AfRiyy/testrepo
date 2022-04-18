@@ -1,8 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AdoptionService } from '../shared/adoption/adoption.service';
 import { AuthService } from '../shared/auth/auth.service';
 import { Pet } from '../shared/pet/pet';
 import { PetsService } from "../shared/pet/pets.service";
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-cats',
   templateUrl: './cats.component.html',
@@ -23,13 +26,18 @@ export class CatsComponent implements OnInit {
   petSheltersId!: any;
   petSName!: any;
 
-
+  myDate!: any;
 
   constructor(private petsService: PetsService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private adoption: AdoptionService
+  ) {
+
+  }
 
   ngOnInit() {
     this.getAllPets();
+    console.log(this.myDate);
   }
 
   getAllPets() {
@@ -45,9 +53,9 @@ export class CatsComponent implements OnInit {
       })
   }
 
-  
 
-  getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any, shelter: any, sname:any){
+
+  getPetId(id: any, bname: any, path: any, name: any, age: any, gender: any, neutered: any, shelter: any, sname: any) {
     this.petId = id.getAttribute('data-petid');
     this.petBName = bname.getAttribute('data-petbname');
     this.petPath = path.getAttribute('data-petpath');
@@ -63,7 +71,7 @@ export class CatsComponent implements OnInit {
     return this.auth.isLoggedIn()
   }
 
-  adoptCat(){
+  adoptCat() {
     let adopted = true;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();
@@ -73,21 +81,34 @@ export class CatsComponent implements OnInit {
     this.petSheltersId = Number(this.petSheltersId);
     this.petSName = this.petSName.toString();
 
+    this.myDate = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+    
+    // sajnos a valós UserId-t még nem tudja a program átadni
+    let userId = 1;
 
-
-    this.petsService.updatePets(this.petId, this.petName,this.petBName, this.petAge, this.petGender, adopted,  this.petSheltersId, this.petNeutered)
+    this.adoption.newAdoption(this.myDate, this.petId, userId)
       .subscribe(res => {
         if (res != 0) {
-          alert("Sikeres örökbefogadás!");
-          window.location.reload();
+          this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
+            .subscribe(res => {
+              if (res != 0) {
+                alert("Sikeres örökbefogadás!");
+                window.location.reload();
+              } else {
+                alert("Az örökbefogadás sikertelen!");
+              }
+            })
+
         } else {
           alert("Az örökbefogadás sikertelen!");
         }
       })
-  }
 
 
   }
+
+
+}
 
 
 

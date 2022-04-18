@@ -4,34 +4,41 @@
       <span><i class="icon icon-user"><img src="../../assets/cat.png" style="width: 80px;"></i></span>
     </div>
     <div class="form-group">
-      <input type="text" formControlName="user" class="form-control item m-0" id="user" placeholder="Felhasználónév" required minlength="4">
-      <span class="px-2"  *ngIf="registerForm.controls['user'].invalid && registerForm.controls['user'].touched">A felhasználónév kötelező</span>
+      <input type="text" formControlName="user" class="form-control item m-0" id="user" placeholder="Felhasználónév"
+        required minlength="4">
+      <span class="px-2" *ngIf="registerForm.controls['user'].invalid && registerForm.controls['user'].touched">A
+        felhasználónév kötelező</span>
     </div>
 
     <div class="form-group mt-3">
       <input type="password" formControlName="pass" class="form-control item m-0" id="password" placeholder="Jelszó">
-      <span class="px-2" *ngIf="registerForm.controls['pass'].invalid && registerForm.controls['pass'].touched">A jelszó kötelező</span>
+      <span class="px-2" *ngIf="registerForm.controls['pass'].invalid && registerForm.controls['pass'].touched">A jelszó
+        kötelező</span>
     </div>
     <div class="form-group mt-3">
       <input type="password" formControlName="pass2" class="form-control item m-0" id="confirm-password"
         placeholder="Jelszó megerősítése">
-        <span class="px-2" *ngIf="registerForm.controls['pass2'].invalid && registerForm.controls['pass2'].touched">A jelszó megerősítése kötelező</span>
+      <span class="px-2" *ngIf="registerForm.controls['pass2'].invalid && registerForm.controls['pass2'].touched">A
+        jelszó megerősítése kötelező</span>
     </div>
     <div class="form-group mt-3">
       <input type="text" formControlName="email" class="form-control item m-0" id="email" placeholder="Email">
-      <span class="px-2" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">Az email kötelező</span>
+      <span class="px-2" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">Az
+        email kötelező</span>
     </div>
 
     <div class="form-group row">
       <div class="col">
-      <input class="form-control item mt-4" placeholder="Születési dátum" name="dp" [(ngModel)]="model" ngbDatepicker
-        #d="ngbDatepicker" formControlName="birth" id="birth-date">
-        <span class="px-2 mt-0" *ngIf="registerForm.controls['birth'].invalid && registerForm.controls['birth'].touched">A születési idő megadása kötelező</span>
+        <input class="form-control item mt-4" placeholder="Születési dátum" name="dp" [(ngModel)]="model" ngbDatepicker
+          #d="ngbDatepicker" formControlName="birth" id="birth-date">
+        <span class="px-2 mt-0"
+          *ngIf="registerForm.controls['birth'].invalid && registerForm.controls['birth'].touched">A születési idő
+          megadása kötelező</span>
       </div>
-      <div class="col mb-5" >
-      <a (click)="d.toggle()" type="button"><img src="assets/icons/calendar-icon.png" alt="shelter-icon"></a>
-      <!-- <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Naptár</button> -->
-     </div>
+      <div class="col mb-5">
+        <a (click)="d.toggle()" type="button"><img src="assets/icons/calendar-icon.png" alt="shelter-icon"></a>
+        <!-- <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Naptár</button> -->
+      </div>
 
     </div>
     <div class="form-group text-center">

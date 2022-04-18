@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PetsService } from '../shared/pet/pets.service';
 import { Pet } from '../shared/pet/pet';
 import { AuthService } from '../shared/auth/auth.service';
+import { formatDate } from '@angular/common';
+import { AdoptionService } from '../shared/adoption/adoption.service';
 @Component({
   selector: 'app-dogs',
   templateUrl: './dogs.component.html',
@@ -19,9 +21,11 @@ export class DogsComponent implements OnInit {
   petNeutered!: any;
   petSheltersId!: any;
   petSName!: any;
+  myDate!: any;
 
 
-  constructor(private petsService: PetsService, private auth: AuthService) {}
+  constructor(private petsService: PetsService, private auth: AuthService,
+    private adoption: AdoptionService) {}
 
   ngOnInit() {
     this.getAllPets();
@@ -55,35 +59,40 @@ export class DogsComponent implements OnInit {
   isLoggedIn() {
     return this.auth.isLoggedIn()
   }
-
-  adoptDog(){
-
+  adoptDog() {
     let adopted = true;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();
     this.petBName = this.petBName.toString();
     this.petAge = Number(this.petAge);
+
     this.petSheltersId = Number(this.petSheltersId);
     this.petSName = this.petSName.toString();
 
-    console.log(this.petId);
-    console.log(this.petName);
-    console.log(this.petBName);
-    console.log(this.petAge);
-    console.log(this.petGender);
-    console.log(this.petSheltersId);
-    console.log(this.petNeutered);
-    console.log(this.petSName);
+    this.myDate = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+    
+    // sajnos a valós UserId-t még nem tudja a program átadni
+    let userId = 1;
 
-
-    this.petsService.updatePets(this.petId, this.petName,this.petBName, this.petAge, this.petGender, adopted,  this.petSheltersId, this.petNeutered)
+    this.adoption.newAdoption(this.myDate, this.petId, userId)
       .subscribe(res => {
         if (res != 0) {
-          alert("Sikeres örökbefogadás!");
-          window.location.reload();
+          this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
+            .subscribe(res => {
+              if (res != 0) {
+                alert("Sikeres örökbefogadás!");
+                window.location.reload();
+              } else {
+                alert("Az örökbefogadás sikertelen!");
+              }
+            })
+
         } else {
           alert("Az örökbefogadás sikertelen!");
         }
       })
+
+
   }
+  
 }

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { NopageComponent } from './nopage.component';
 
@@ -19,7 +20,12 @@ describe('NopageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('a komponens elkészül', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('a Főoldalra mutató link létrejön', () => {
+    const link = fixture.debugElement.queryAll(By.css('a'));
+    expect(link.length).toBe(1);
   });
 });

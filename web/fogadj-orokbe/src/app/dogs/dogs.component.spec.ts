@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DogsComponent } from './dogs.component';
@@ -28,7 +29,17 @@ describe('DogsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('a komponens elkészül', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('létrejön a kutyák profilját mutató modal', () => {
+    const modal = fixture.debugElement.queryAll(By.css('.modal'));
+    expect(modal.length).toBe(1);
+  });
+
+  it('a kutyák kártyái léteznek', () => {
+    const card = fixture.debugElement.queryAll(By.css('.card-deck'));
+    expect(card.length).toBe(1);
   });
 });

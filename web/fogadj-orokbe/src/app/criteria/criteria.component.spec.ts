@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { CriteriaComponent } from './criteria.component';
 
@@ -19,7 +20,12 @@ describe('CriteriaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('a komponens elkészül', () => {
     expect(component).toBeTruthy();
+  });
+  
+  it('a cím tartalmazza: Az örökbefogadás feltételei', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h5')?.textContent).toContain('Az örökbefogadás feltételei');
   });
 });

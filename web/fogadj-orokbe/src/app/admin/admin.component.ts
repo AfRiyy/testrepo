@@ -77,7 +77,6 @@ export class AdminComponent implements OnInit {
         this.pets = res.data;
         this.pets.forEach(pet => {
           this.cats.push(pet);
-          // console.log(pet);
         });
       })
   }
@@ -87,8 +86,6 @@ export class AdminComponent implements OnInit {
         this.shelters = res.data;
         this.shelters.forEach(shelter => {
           this.shelters2.push(shelter);
-          // console.log(shelter);
-
         });
       })
   }
@@ -157,7 +154,7 @@ export class AdminComponent implements OnInit {
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres felvétel");
-          // window.location.reload();
+          window.location.reload();
         } else {
           alert("A felvétel sikertelen!");
         }

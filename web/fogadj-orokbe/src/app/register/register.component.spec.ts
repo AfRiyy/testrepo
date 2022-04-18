@@ -6,6 +6,7 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../shared/auth/auth.service';
+import { By } from '@angular/platform-browser';
 
 
 describe('RegisterComponent', () => {
@@ -32,7 +33,17 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('a komponens elkészül', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('létrejön a regisztrációs űrlap', () => {
+    const form = fixture.debugElement.queryAll(By.css('form'));
+    expect(form.length).toBe(1);
+  });
+
+  it('létrejön a regsztrációs gomb', () => {
+    const button = fixture.debugElement.queryAll(By.css('button'));
+    expect(button.length).toBe(1);
   });
 });
