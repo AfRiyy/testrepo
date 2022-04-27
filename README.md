@@ -21,7 +21,8 @@ A következő lépésben létre kell hoznunk egy shelter nevű adatbázist, hogy
 
 * php artisan migrate
 
-Ez a parancs létrehozza a szükséges táblákat. Beimportálhatunk egy minta adatbázist, amit az api/draft/shelter.sql fájl tartalmaz, vagy Seeder segítségével generálhatunk véletlenszerű adatokat (ezekhez nem fognak képek tartozni!).
+A szükséges képek a doc/storage.zip fájlban vannak, a shelter mappába kell bemásolni.
+Ez a parancs létrehozza a szükséges táblákat. Beimportálhatunk egy minta adatbázist, amit az database/adatbazis_mentes.sql fájl tartalmaz, vagy Seeder segítségével generálhatunk véletlenszerű adatokat (ezekhez nem fognak képek tartozni!).
 
 ### Adatbázis feltöltés előre elkészített mentéssel.
 A database mappa tartalmaz egy adatbázis mentést adatbazis_mentes.sql néven. Ebben egy admin felhasználó található, admin jelszóval, 4 állat, 1 menhely, és egy örökbefogadás.
