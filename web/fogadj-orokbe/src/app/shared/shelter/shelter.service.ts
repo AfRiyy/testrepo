@@ -44,7 +44,7 @@ export class ShelterService {
     let url = this.host + endpoint;
     return this.http.put<any>(url, data, header);
   }
-  postSpecie(shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
+  postShelters(shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
     let vData = {
       shelter_name: shelter_name,
       shelter_zip: shelter_zip,
