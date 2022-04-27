@@ -1,5 +1,6 @@
 export interface AdoptionInterface {
+    id: number
     date: Date
-    pets_id: number
-    users_id: number
+    user: string
+    name: string
 }

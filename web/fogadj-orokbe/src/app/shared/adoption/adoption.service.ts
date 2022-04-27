@@ -8,16 +8,19 @@ import { map } from 'rxjs';
 })
 export class AdoptionService {
 
+
   host = 'http://localhost:8000/api/';
 
-  constructor(private http: HttpClient, private router: Router) {
-
+  constructor(private http: HttpClient, private router: Router) {}
+  getAdoptions() {
+    let endpoint = 'adoptions';
+    return this.http.get<any>(this.host + endpoint)
   }
-  updateAdoption(id:number,date: string, pets_id: number, user_id: number){
+  updateAdoption(id:number,date: string, name: string, user: string){
     let vData = {
-      date: date,
-      pets_id: pets_id,
-      users_id: user_id
+
+      name: name,
+      user: user
     }
     let data = JSON.stringify(vData);
 
@@ -27,7 +30,8 @@ export class AdoptionService {
 
     let headerObj = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + token,
+      'method':'put'
     });
     let header = {
       headers: headerObj
@@ -36,11 +40,11 @@ export class AdoptionService {
     let url = this.host + endpoint;
     return this.http.put<any>(url, data, header);
   }
-  newAdoption(date: string, pets_id: number, user_id: number){
+  postAdoption(date: string, name: string, user: string){
     let vData = {
       date: date,
-      pets_id: pets_id,
-      users_id: user_id
+      name: name,
+      user: user
     }
     let data = JSON.stringify(vData);
 

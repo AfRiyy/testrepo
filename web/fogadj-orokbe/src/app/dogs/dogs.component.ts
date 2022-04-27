@@ -68,10 +68,8 @@ export class DogsComponent implements OnInit {
     this.petSheltersId = Number(this.petSheltersId);
     this.petSName = this.petSName.toString();
     this.myDate = formatDate(new Date(), 'yyyy/MM/dd HH:MM:SS', 'en');
-    let userId:number = Number(this.auth.userId());
-
-
-    this.adoption.newAdoption(this.myDate, this.petId, userId)
+    let user:string = this.auth.userName();
+    this.adoption.postAdoption(this.myDate, this.petName, user)
       .subscribe(res => {
         if (res != 0) {
           this.petsService.updatePetsWithoutImage(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)

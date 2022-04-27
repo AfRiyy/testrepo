@@ -112,6 +112,12 @@ export class AuthService {
       let id = currentUser.user_id;
       return id;
     }
+    userName(){
+      let data:any = localStorage.getItem('currentUser');
+      let currentUser = JSON.parse(data);
+      let user = currentUser.name;
+      return user;
+    }
   }
 
 

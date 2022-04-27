@@ -48,7 +48,7 @@ export class AppComponent {
     .subscribe(res => {
       if (res.success) {
         localStorage.setItem('currentUser',
-        JSON.stringify({token: res.data.token, name: res.data.name, admin: res.data.admin, user_id: res.data.user_id})
+        JSON.stringify({token: res.data.token, name: res.data.user, admin: res.data.admin, user_id: res.data.user_id})
         );
         this.router.navigate(['main']);
       }else {
