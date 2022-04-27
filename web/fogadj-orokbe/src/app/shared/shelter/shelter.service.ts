@@ -16,7 +16,7 @@ export class ShelterService {
     let endpoint = 'shelters';
     return this.http.get<any>(this.host + endpoint)
   }
-  updateSpecie(id:number,shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
+  updateShelter(id:number,shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
     let vData = {
       id: id,
       shelter_name: shelter_name,
@@ -40,11 +40,11 @@ export class ShelterService {
     let header = {
       headers: headerObj
     }
-    let endpoint = 'species/'+ id;
+    let endpoint = 'shelters/'+ id;
     let url = this.host + endpoint;
     return this.http.put<any>(url, data, header);
   }
-  postShelters(shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
+  postShelter(shelter_name: string,shelter_zip: number,shelter_city: string,shelter_street_address: string,shelter_phone:string,shelter_website:string,shelter_facebook:string){
     let vData = {
       shelter_name: shelter_name,
       shelter_zip: shelter_zip,
@@ -66,7 +66,7 @@ export class ShelterService {
     let header = {
       headers: headerObj
     }
-    let endpoint = 'species';
+    let endpoint = 'shelters';
     let url = this.host + endpoint;
     return this.http.post<any>(url, vData, header);
   }

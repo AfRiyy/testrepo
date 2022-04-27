@@ -39,3 +39,75 @@
 
     <button type="submit" class="btn btn-primary">Hozzáad</button>
 </form>
+
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Menhely neve</th>
+          <th scope="col">Irányítószám</th>
+          <th scope="col">Város</th>
+          <th scope="col">Cím</th>
+          <th scope="col">Telefonszám</th>
+          <th scope="col">Weboldal</th>
+          <th scope="col">Facebook</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let shelter of shelters">
+  
+          <td>{{shelter.shelter_name}}</td>
+          <td>{{shelter.shelter_zip}}</td>
+          <td>{{shelter.shelter_city}}</td>
+          <td>{{shelter.shelter_street_address}}</td>
+          <td>{{shelter.shelter_phone}}</td>
+          <td>{{shelter.shelter_website}}</td>
+          <td>{{shelter.shelter_facebook}}</td>
+
+  
+          <td>
+            <h5 #id [attr.data-petid]="shelter.id" class="card-text visually-hidden w-0">{{shelter.id}}</h5>
+            <button (click)="deleteShelter(shelter.id)" class="btn btn-danger max-3">Törlés</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(shelter)"
+              class="btn btn-info mx-2">Szerkesztés</button>
+          </td>
+  
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Állat adatainak frissítése</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="updateShelterForm" (ngSubmit)="updateShelter()">
+  
+            <div class="mb-3 visually-hidden w-0">
+              <label for="id" class="form-label">id</label>
+              <input type="text" class="form-control" formControlName="id" required>
+  
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Név</label>
+              <input type="text" class="form-control" formControlName="name" required>
+  
+            </div>
+  
+  
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+          <button type="submit" class="btn btn-primary" (click)="updateShelter()">Frissítés</button>
+        </div>
+      </div>
+    </div>
+  </div>
