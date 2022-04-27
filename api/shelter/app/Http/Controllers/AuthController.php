@@ -40,6 +40,7 @@ class AuthController extends BaseController
             $success["token"] = $authUser->createToken("adoptme")->plainTextToken;
             $success["user"] = $authUser->user;
 			$success["admin"] = $authUser->admin;
+            $success["user_id"] = $authUser->id;
             return $this->sendResponse($success, "User signed in");
         } else {
             return $this->sendError("Sikertelen bejelentkezés", ["error" => "Hibás adatok"]);
@@ -47,9 +48,7 @@ class AuthController extends BaseController
     }
     public function signOff(Request $request)
     {
-
         auth("sanctum")->user()->currentAccessToken()->delete();
-
         return response()->json('Successfully logged out');
     }
 }
