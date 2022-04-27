@@ -19,6 +19,8 @@ import { RegisterComponent } from './register/register.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NewpetComponent } from './admin/newpet/newpet.component';
+import { NewshelterComponent } from './admin/newshelter/newshelter.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminComponent,
     RegisterComponent,
     CriteriaComponent,
-    ZipfilterPipe
+    ZipfilterPipe,
+    NewpetComponent,
+    NewshelterComponent
   ],
   imports: [
     HttpClientModule,
