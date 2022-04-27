@@ -36,9 +36,10 @@ export class BreedService {
     let url = this.host + endpoint;
     return this.http.put<any>(url, data, header);
   }
-  postBreed(bname: string){
+  postBreed(bname: string, species_id:number){
     let vData = {
-      bname: bname
+      bname: bname,
+      species_id: species_id
     }
     let data = JSON.stringify(vData);
 

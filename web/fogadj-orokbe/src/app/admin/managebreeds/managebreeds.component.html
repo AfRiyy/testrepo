@@ -1,1 +1,88 @@
-<p>managebreeds works!</p>
+<h2 class="bg-info p-4" data-bs-toggle="collapse" href="#newBreed" role="button" aria-expanded="false"
+    aria-controls="newBreed">Új fajta hozzáadása</h2>
+<form class="form-control collapse" id="newBreed" [formGroup]="newBreedForm" (ngSubmit)="newBreed()">
+    <div class="mb-3">
+        <label for="bname" class="form-label">Fajta neve</label>
+        <input type="text" class="form-control" formControlName="bname" required>
+    </div>
+
+    <label for="sname" class="form-label">Faj</label>
+    <div class="input-group mb-3">
+        <select class="form-select" (change)="changeSName($event)" formControlName="sname">
+            <option value="">Válassz fajtát: </option>
+            <option *ngFor="let specie of species" [ngValue]="specie.id">
+                {{specie.sname}}
+            </option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Hozzáad</button>
+</form>
+<h2 class="p-4 bg-info mt-3">Fajták az adatbázisban: </h2>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Fajták</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let breed of breeds">
+        <td>{{breed.bname}}</td>
+        <td>
+          <h5 #id [attr.data-breedid]="breed.id" class="card-text visually-hidden w-0">{{breed.id}}</h5>
+          <button (click)="deleteBreed(breed.id)" class="btn btn-danger max-3">Törlés</button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(breed)"
+            class="btn btn-info mx-2">Szerkesztés</button>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Fajta adatainak frissítése</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateBreedForm" (ngSubmit)="updateBreed()">
+
+          <div class="mb-3 visually-hidden w-0">
+            <label for="id" class="form-label">id</label>
+            <input type="text" class="form-control" formControlName="id" required>
+
+          </div>
+
+          <div class="mb-3">
+            <label for="bname" class="form-label">Fajta neve</label>
+            <input type="text" class="form-control" formControlName="bname" required>
+        </div>
+    
+        <label for="sname" class="form-label">Faj</label>
+        <div class="input-group mb-3">
+            <select class="form-select" (change)="changeSName($event)" formControlName="sname">
+                <option value="">Válassz fajtát: </option>
+                <option *ngFor="let specie of species" [ngValue]="specie.sname">
+                    {{specie.sname}}
+                </option>
+            </select>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+        <button type="submit" class="btn btn-primary" (click)="updateBreed()">Frissítés</button>
+      </div>
+    </div>
+  </div>
+</div>
