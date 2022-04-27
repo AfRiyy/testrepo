@@ -42,7 +42,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="updatespecieForm" (ngSubmit)="updateSpecie()">
+        <form [formGroup]="updateSpecieForm" (ngSubmit)="updateSpecie()">
 
           <div class="mb-3 visually-hidden w-0">
             <label for="id" class="form-label">id</label>
@@ -50,8 +50,8 @@
 
           </div>
           <div class="mb-3">
-            <label for="specie" class="form-label">Név</label>
-            <input type="text" class="form-control" formControlName="specie" required>
+            <label for="sname" class="form-label">Név</label>
+            <input type="text" class="form-control" formControlName="sname" required>
           </div>
         </form>
       </div>

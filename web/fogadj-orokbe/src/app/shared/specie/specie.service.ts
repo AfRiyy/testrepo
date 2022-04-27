@@ -31,11 +31,9 @@ constructor(private http: HttpClient, private router: Router) {}
     let header = {
       headers: headerObj
     }
-    let endpoint = 'pets/'+ id;
+    let endpoint = 'species/'+ id;
     let url = this.host + endpoint;
     return this.http.put<any>(url, data, header);
-
-
   }
   postSpecie(sname: string){
     let vData = {

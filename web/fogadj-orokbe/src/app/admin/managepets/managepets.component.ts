@@ -107,7 +107,7 @@ export class ManagepetsComponent implements OnInit {
   }
   changeGender(e: any) {
     this.gender?.setValue(e.target.value, {
-      onlySelf: true,
+      onlySelf: false,
     });
   }
   changeNeutered(e: any) {
@@ -172,7 +172,6 @@ export class ManagepetsComponent implements OnInit {
   }
 
   onEdit(pet: any) {
-
     this.updatePetForm.controls['id'].setValue(pet.id);
     this.updatePetForm.controls['name'].setValue(pet.name);
     this.updatePetForm.controls['bname'].setValue(pet.bname);
