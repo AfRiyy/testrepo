@@ -60,7 +60,7 @@ export class DogsComponent implements OnInit {
     return this.auth.isLoggedIn()
   }
   adoptDog() {
-    let adopted = true;
+    let adopted = 1;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();
     this.petBName = this.petBName.toString();
@@ -70,14 +70,14 @@ export class DogsComponent implements OnInit {
     this.petSName = this.petSName.toString();
 
     this.myDate = formatDate(new Date(), 'yyyy/MM/dd', 'en');
-    
-    // sajnos a valós UserId-t még nem tudja a program átadni
-    let userId = 1;
+    let image = '';
+    let userId:number = Number(this.auth.userId());
+    console.log("User id:"+this.auth.userId());
 
     this.adoption.newAdoption(this.myDate, this.petId, userId)
       .subscribe(res => {
         if (res != 0) {
-          this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
+          this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered,image)
             .subscribe(res => {
               if (res != 0) {
                 alert("Sikeres örökbefogadás!");
@@ -94,5 +94,5 @@ export class DogsComponent implements OnInit {
 
 
   }
-  
+
 }

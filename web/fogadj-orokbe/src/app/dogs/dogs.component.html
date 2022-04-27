@@ -15,7 +15,7 @@ style="
   <div class="container">
     <div class="card-deck row">
       <div class="card col-xs-12 col-sm-6 col-lg-3 p-1 text-center mb-2 " *ngFor="let pet of dogs" >
-        <img #path [attr.data-petpath]="pet.picture_path" src= "http://localhost:8000/images/pets/dogs/{{pet.picture_path}}.jpg" class="card-img-top img-thumbnail" id="cat-picture" alt="Card image cap">
+        <img #path [attr.data-petpath]="pet.picture_path" src= "{{pet.picture_path}}" class="card-img-top img-thumbnail" id="cat-picture" alt="Card image cap">
   
         <div class="card-body" id="dogInfo">
   
@@ -57,7 +57,7 @@ style="
           </div>
           <div class="modal-body text-start d-flex flex-row justify-content-between">            
             <div>
-            <img src= "http://localhost:8000/images/pets/dogs/{{this.petPath}}.jpg" class="card-img-top img-thumbnail" id="dog-picture" alt="Card image cap">
+            <img src= "{{this.petPath}}" class="card-img-top img-thumbnail" id="dog-picture" alt="Card image cap">
             </div>
             <div class="p-4">
                 <p class="">Neve: {{this.petName}}</p>
