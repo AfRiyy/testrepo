@@ -207,7 +207,7 @@ export class AdminComponent implements OnInit {
     let adopted:any = 0;
     let shelters_id = this.updatePetForm.value.shelters_id;
 
-    this.petsService.updatePets(id, name, bname, age, this.gender2, adopted, shelters_id, this.neutered2,this.image)
+    this.petsService.updatePetsWithImage(id, name, bname, age, this.gender2, adopted, shelters_id, this.neutered2,this.image)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres frissítés!");

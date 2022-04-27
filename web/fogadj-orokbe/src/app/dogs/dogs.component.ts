@@ -60,24 +60,21 @@ export class DogsComponent implements OnInit {
     return this.auth.isLoggedIn()
   }
   adoptDog() {
-    let adopted = 1;
+    let adopted = true;
     this.petId = Number(this.petId);
     this.petName = this.petName.toString();
     this.petBName = this.petBName.toString();
     this.petAge = Number(this.petAge);
-
     this.petSheltersId = Number(this.petSheltersId);
     this.petSName = this.petSName.toString();
-
     this.myDate = formatDate(new Date(), 'yyyy/MM/dd', 'en');
-    let image = '';
     let userId:number = Number(this.auth.userId());
-    console.log("User id:"+this.auth.userId());
+
 
     this.adoption.newAdoption(this.myDate, this.petId, userId)
       .subscribe(res => {
         if (res != 0) {
-          this.petsService.updatePets(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered,image)
+          this.petsService.updatePetsWithoutImage(this.petId, this.petName, this.petBName, this.petAge, this.petGender, adopted, this.petSheltersId, this.petNeutered)
             .subscribe(res => {
               if (res != 0) {
                 alert("Sikeres örökbefogadás!");
