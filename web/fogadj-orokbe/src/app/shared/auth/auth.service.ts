@@ -106,7 +106,13 @@ export class AuthService {
         return false;
       }
     }
+    userId(){
+      let data:any = localStorage.getItem('currentUser');
+      let currentUser = JSON.parse(data);
+      let id = currentUser.user_id;
+      return id;
+    }
   }
 
-  
+
 
