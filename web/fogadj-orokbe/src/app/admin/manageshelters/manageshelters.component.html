@@ -1,5 +1,41 @@
-<h2 class="bg-info p-4 mb-3" data-bs-toggle="collapse" href="#newShelter" role="button" aria-expanded="false"
-    aria-controls="newPet">Új menhely hozzáadása</h2>
-<form class="form-control collapse mb-3" id="newShelter">
-    <h5>Új menhely</h5>
+
+
+    <h2 class="bg-info p-4 mb-3" data-bs-toggle="collapse" href="#newShelter" role="button" aria-expanded="false"
+    aria-controls="newShelter">Új menhely hozzáadása</h2>
+
+<form class="form-control collapse" id="newShelter" [formGroup]="newShelterForm" (ngSubmit)="newShelter()">
+    <div class="mb-3">
+        <label for="shelter_name" class="form-label">Menhely neve:</label>
+        <input type="text" class="form-control" formControlName="shelter_name" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="shelter_zip" class="form-label">Irányítószám:</label>
+        <input type="text" class="form-control" formControlName="shelter_zip">
+    </div>
+
+    <div class="mb-3">
+        <label for="shelter_city" class="form-label">Város:</label>
+        <input type="text" class="form-control" formControlName="shelter_city">
+    </div>
+    <div class="mb-3">
+        <label for="shelter_street_address" class="form-label">Cím::</label>
+        <input type="text" class="form-control" formControlName="shelter_street_address">
+    </div>
+
+    <div class="mb-3">
+        <label for="shelter_phone" class="form-label">Telefonszám:</label>
+        <input type="text" class="form-control" formControlName="shelter_phone">
+    </div>
+    <div class="mb-3">
+        <label for="shelter_website" class="form-label">Weboldal:</label>
+        <input type="text" class="form-control" formControlName="shelter_website">
+    </div>
+    <div class="mb-3">
+        <label for="shelter_facebook" class="form-label">Facebook:</label>
+        <input type="text" class="form-control" formControlName="shelter_facebook">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Hozzáad</button>
 </form>
