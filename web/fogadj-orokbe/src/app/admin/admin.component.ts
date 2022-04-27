@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
   gender2!: any;
   neutered2!: any;
 
-  image!:File;
+  image!: File;
   bname: any;
   Gender: any = ["hím", "nőstény"];
   gender: any;
@@ -123,7 +123,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  handleFileInput(event:any) {
+  handleFileInput(event: any) {
     this.image = event.target.files[0];
   }
 
@@ -150,7 +150,7 @@ export class AdminComponent implements OnInit {
     let shelters_id = this.newPetForm.value.shelters_id;
 
 
-    this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2,this.image)
+    this.petsService.postPets(name, bname, age, this.gender2, adopted, shelters_id, this.neutered2, this.image)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres felvétel");
@@ -204,10 +204,10 @@ export class AdminComponent implements OnInit {
     let name = this.updatePetForm.value.name;
     let bname = this.updatePetForm.value.bname;
     let age = this.updatePetForm.value.age;
-    let adopted:any = 0;
+    let adopted: any = 0;
     let shelters_id = this.updatePetForm.value.shelters_id;
 
-    this.petsService.updatePetsWithImage(id, name, bname, age, this.gender2, adopted, shelters_id, this.neutered2,this.image)
+    this.petsService.updatePetsWithImage(id, name, bname, age, this.gender2, adopted, shelters_id, this.neutered2, this.image)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres frissítés!");
