@@ -19,8 +19,11 @@ import { RegisterComponent } from './register/register.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 import { ZipfilterPipe } from './shared/pipe/zipfilter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NewpetComponent } from './admin/newpet/newpet.component';
-import { NewshelterComponent } from './admin/newshelter/newshelter.component';
+import { ManagepetsComponent } from './admin/managepets/managepets.component';
+import { ManagesheltersComponent } from './admin/manageshelters/manageshelters.component';
+import { ManagespeciesComponent } from './admin/managespecies/managespecies.component';
+import { ManagebreedsComponent } from './admin/managebreeds/managebreeds.component';
+import { ManageadoptionsComponent } from './admin/manageadoptions/manageadoptions.component';
 
 
 @NgModule({
@@ -36,8 +39,11 @@ import { NewshelterComponent } from './admin/newshelter/newshelter.component';
     RegisterComponent,
     CriteriaComponent,
     ZipfilterPipe,
-    NewpetComponent,
-    NewshelterComponent
+    ManagesheltersComponent,
+    ManagespeciesComponent,
+    ManagebreedsComponent,
+    ManageadoptionsComponent,
+    ManagepetsComponent
   ],
   imports: [
     HttpClientModule,

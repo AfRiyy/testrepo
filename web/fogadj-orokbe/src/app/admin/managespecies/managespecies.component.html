@@ -1,0 +1,64 @@
+<h2 class="bg-info p-4" data-bs-toggle="collapse" href="#newSpecie" role="button" aria-expanded="false"
+    aria-controls="newSpecie">Új faj hozzáadása</h2>
+<form class="form-control collapse" id="newSpecie" [formGroup]="newSpecieForm" (ngSubmit)="newSpecie()">
+    <div class="mb-3">
+        <label for="sname" class="form-label">Faj</label>
+        <input type="text" class="form-control" formControlName="sname" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Hozzáad</button>
+</form>
+<h2 class="p-4 bg-info mt-3">Állatok az adatbázisban: </h2>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Faj</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let specie of species">
+        <td>{{specie.sname}}</td>
+        <td>
+          <h5 #id [attr.data-specieid]="specie.id" class="card-text visually-hidden w-0">{{specie.id}}</h5>
+          <button (click)="deleteSpecie(specie.id)" class="btn btn-danger max-3">Törlés</button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(specie)"
+            class="btn btn-info mx-2">Szerkesztés</button>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Faj adatainak frissítése</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updatespecieForm" (ngSubmit)="updateSpecie()">
+
+          <div class="mb-3 visually-hidden w-0">
+            <label for="id" class="form-label">id</label>
+            <input type="text" class="form-control" formControlName="id" required>
+
+          </div>
+          <div class="mb-3">
+            <label for="specie" class="form-label">Név</label>
+            <input type="text" class="form-control" formControlName="specie" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+        <button type="submit" class="btn btn-primary" (click)="updateSpecie()">Frissítés</button>
+      </div>
+    </div>
+  </div>
+</div>

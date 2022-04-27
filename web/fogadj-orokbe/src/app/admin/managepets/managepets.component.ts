@@ -1,58 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Pet } from '../shared/pet/pet';
-import { PetsService } from '../shared/pet/pets.service';
-import { ShelterService } from '../shared/shelter/shelter.service';
-import { BreedInterface } from '../shared/breed/breed-interface';
-import { BreedService } from '../shared/breed/breed.service';
-import { ShelterInterface } from '../shared/shelter/shelter-interface';
+import { PetsService } from 'src/app/shared/pet/pets.service';
+import { Pet } from 'src/app/shared/pet/pet';
+import { BreedInterface } from 'src/app/shared/breed/breed-interface';
+import { BreedService } from 'src/app/shared/breed/breed.service';
+import { ShelterInterface } from 'src/app/shared/shelter/shelter-interface';
+import { ShelterService } from 'src/app/shared/shelter/shelter.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-managepets',
+  templateUrl: './managepets.component.html',
+  styleUrls: ['./managepets.component.css']
 })
-export class AdminComponent implements OnInit {
-  show_pets=false;
-  show_species=false;
-  show_breeds=false;
-  show_shelters=false;
-  show_adoptions=false;
-  showpets(){
-    this.show_pets=!this.show_pets;
-    this.show_species=false;
-    this.show_breeds=false;
-    this.show_shelters=false;
-    this.show_adoptions=false;
-  }
-  showspecies(){
-    this.show_pets=false;
-    this.show_species=!this.show_species;
-    this.show_breeds=false;
-    this.show_shelters=false;
-    this.show_adoptions=false;
-  }
-  showbreeds(){
-    this.show_pets=false;
-    this.show_species=false;
-    this.show_breeds=!this.show_breeds;
-    this.show_shelters=false;
-    this.show_adoptions=false;
-  }
-  showshelters(){
-    this.show_pets=false;
-    this.show_species=false;
-    this.show_breeds=false;
-    this.show_shelters=!this.show_shelters
-    this.show_adoptions=false;
-  }
-  showadoptions(){
-    this.show_pets=false;
-    this.show_species=false;
-    this.show_breeds=false;
-    this.show_shelters=false;
-    this.show_adoptions=!this.show_adoptions;
-  }
+export class ManagepetsComponent implements OnInit {
 
   newPetForm !: FormGroup
   updatePetForm !: FormGroup
@@ -255,5 +215,6 @@ export class AdminComponent implements OnInit {
         }
       })
   }
+
 
 }
