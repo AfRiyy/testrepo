@@ -1,114 +1,60 @@
 <div class="bg-light p-5">
-  <h2 class="bg-info p-4">Új kisállat</h2>
-  <form [formGroup]="newPetForm" (ngSubmit)="newPet()">
-    <div class="mb-3">
-      <label for="name" class="form-label">Név</label>
-      <input type="text" class="form-control" formControlName="name" required>
+  <div class="d-flex justify-content-evenly mb-3">
+    <button class="btn btn-info">Állatok kezelése</button>
+    <button class="btn btn-info">Fajok kezelése</button>
+    <button class="btn btn-info">Fajták kezelése</button>
+    <button class="btn btn-info">Menhelyek kezelése</button>
+    <button class="btn btn-info">Örökbefogadások kezelése</button>
+  </div>
+  <app-newshelter></app-newshelter>
+  <app-newpet></app-newpet>
 
-    </div>
-
-    <label for="bname" class="form-label">Fajták</label>
-    <div class="input-group mb-3">
-      <select class="form-select" (change)="changeBName($event)" formControlName="bname">
-        <option value="">Válassz fajtát: </option>
-        <option *ngFor="let breed of breeds" [ngValue]="breed.bname">
-          {{breed.bname}}
-        </option>
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label for="age" class="form-label">Kor</label>
-      <input type="text" class="form-control" formControlName="age">
-    </div>
-
-    <label for="gender" class="form-label">Neme</label>
-    <div class="input-group mb-3">
-      <select class="form-select" (change)="changeGender($event)" formControlName="gender">
-        <option value="">Válassz nemet: </option>
-        <option *ngFor="let gender of Gender" [ngValue]="gender">
-          {{gender }}
-        </option>
-      </select>
-    </div>
-
-    <label for="shelters_id" class="form-label">Menhely</label>
-    <div class="input-group mb-3">
-      <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
-        <option value="">Válassz menhelyet: </option>
-        <option *ngFor="let shelter of shelters" [ngValue]="shelter.id">
-
-          {{shelter.shelter_name }}
-        </option>
-      </select>
-    </div>
-
-
-    <label for="neutered" class="form-label">Ivartalanított-e</label>
-    <div class="input-group mb-3">
-      <select class="form-select" (change)="changeNeutered($event)" formControlName="neutered">
-        <option value="">Ivartalanított?</option>
-        <option *ngFor="let neutered of Neutered" [ngValue]="neutered">
-          {{neutered }}
-        </option>
-      </select>
-    </div>
-
-	<label for="image" class="form-label">Kép</label>
-    <div class="input-group mb-3">
-		<input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="image" accept="image/jpeg, image/png, image/jpg">
-    </div>
-    <button type="submit" class="btn btn-primary">Hozzáad</button>
-  </form>
 
   <h2 class="p-4 bg-info mt-3">Állatok az adatbázisban: </h2>
 
   <div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Állat neve</th>
-        <th scope="col">Állat faja</th>
-        <th scope="col">Állat kora</th>
-        <th scope="col">Állat neme</th>
-        <th scope="col">Örökbefogadott-e</th>
-        <th scope="col">Ivartalanított</th>
-      </tr>
-    </thead>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Állat neve</th>
+          <th scope="col">Állat faja</th>
+          <th scope="col">Állat kora</th>
+          <th scope="col">Állat neme</th>
+          <th scope="col">Örökbefogadott-e</th>
+          <th scope="col">Ivartalanított</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr *ngFor="let pet of pets">
+      <tbody>
+        <tr *ngFor="let pet of pets">
 
-        <td>{{pet.name}}</td>
-        <td>{{pet.bname}}</td>
-        <td>{{pet.age}} éves</td>
-        <td *ngIf="pet.gender == false">hím</td>
-        <td *ngIf="pet.gender == true"> nőstény</td>
-        <td *ngIf="pet.adopted==false">Örökbefogadható</td>
-        <td *ngIf="pet.adopted==true">Örökbefogadott</td>
-        <td *ngIf="pet.neutered==true">Igen</td>
-        <td *ngIf="pet.neutered==false">Nem</td>
+          <td>{{pet.name}}</td>
+          <td>{{pet.bname}}</td>
+          <td>{{pet.age}} éves</td>
+          <td *ngIf="pet.gender == false">hím</td>
+          <td *ngIf="pet.gender == true"> nőstény</td>
+          <td *ngIf="pet.adopted==false">Örökbefogadható</td>
+          <td *ngIf="pet.adopted==true">Örökbefogadott</td>
+          <td *ngIf="pet.neutered==true">Igen</td>
+          <td *ngIf="pet.neutered==false">Nem</td>
 
-        <td>
-          <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden w-0" >{{pet.id}}</h5>
-          <button
-          (click)="deletePet(pet.id)"
-          class="btn btn-danger max-3">Törlés</button>
-          <button
-                type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                (click)="onEdit(pet)"
-                class="btn btn-info mx-2">Szerkesztés</button>
-      </td>
+          <td>
+            <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden w-0">{{pet.id}}</h5>
+            <button (click)="deletePet(pet.id)" class="btn btn-danger max-3">Törlés</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(pet)"
+              class="btn btn-info mx-2">Szerkesztés</button>
+          </td>
 
-      </tr>
+        </tr>
 
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -176,10 +122,11 @@
             </select>
           </div>
           <label for="image" class="form-label">Kép</label>
-    <div class="input-group mb-3">
-		<input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="image" accept="image/jpeg, image/png, image/jpg">
-    </div>
-    <button type="submit" class="btn btn-primary">Hozzáad</button>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="image"
+              accept="image/jpeg, image/png, image/jpg">
+          </div>
+          <button type="submit" class="btn btn-primary">Hozzáad</button>
 
 
         </form>
