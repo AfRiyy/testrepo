@@ -63,7 +63,7 @@ export class ManagesheltersComponent implements OnInit {
     let shelter_facebook = this.newShelterForm.value.shelter_facebook;
 
 
-    this.shelt.postShelters(shelter_name, shelter_zip, shelter_city, shelter_street_address, shelter_phone, shelter_website, shelter_facebook)
+    this.shelt.postShelter(shelter_name, shelter_zip, shelter_city, shelter_street_address, shelter_phone, shelter_website, shelter_facebook)
       .subscribe(res => {
         if (res != 0) {
           alert("Sikeres felvétel");
