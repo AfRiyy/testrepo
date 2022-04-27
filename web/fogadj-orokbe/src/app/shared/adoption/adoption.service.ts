@@ -13,11 +13,11 @@ export class AdoptionService {
 
   }
 
-  newAdoption(date: string, pets_id: number, users_id: number){
+  newAdoption(date: string, pets_id: number, user_id: number){
     let vData = {
       date: date,
       pets_id: pets_id,
-      users_id: users_id
+      users_id: user_id
     }
     let data = JSON.stringify(vData);
 
