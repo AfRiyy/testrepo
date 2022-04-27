@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { reduceEachLeadingCommentRange } from 'typescript';
 import { AuthService } from '../app/shared/auth/auth.service';
 
 
@@ -47,11 +48,10 @@ export class AppComponent {
     this.auth.login(username, password)
     .subscribe(res => {
       if (res.success) {
-        localStorage.setItem('currentUser', 
-        JSON.stringify({token: res.data.token, name: res.data.name, admin: res.data.admin})
+        localStorage.setItem('currentUser',
+        JSON.stringify({token: res.data.token, name: res.data.name, admin: res.data.admin, user_id: res.data.user_id})
         );
         this.router.navigate(['main']);
-
       }else {
         alert("Hiba! A belépés sikertelen!")
       }
