@@ -67,7 +67,7 @@ export class DogsComponent implements OnInit {
     this.petAge = Number(this.petAge);
     this.petSheltersId = Number(this.petSheltersId);
     this.petSName = this.petSName.toString();
-    this.myDate = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+    this.myDate = formatDate(new Date(), 'yyyy/MM/dd HH:MM:SS', 'en');
     let userId:number = Number(this.auth.userId());
 
 
