@@ -54,6 +54,10 @@
       </select>
     </div>
 
+	<label for="image" class="form-label">Kép</label>
+    <div class="input-group mb-3">
+		<input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="image" accept="image/jpeg, image/png, image/jpg">
+    </div>
     <button type="submit" class="btn btn-primary">Hozzáad</button>
   </form>
 
@@ -74,7 +78,7 @@
 
     <tbody>
       <tr *ngFor="let pet of pets">
-        
+
         <td>{{pet.name}}</td>
         <td>{{pet.bname}}</td>
         <td>{{pet.age}} éves</td>
@@ -87,14 +91,14 @@
 
         <td>
           <h5 #id [attr.data-petid]="pet.id" class="card-text visually-hidden w-0" >{{pet.id}}</h5>
-          <button 
+          <button
           (click)="deletePet(pet.id)"
           class="btn btn-danger max-3">Törlés</button>
-          <button 
+          <button
                 type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                 (click)="onEdit(pet)"
                 class="btn btn-info mx-2">Szerkesztés</button>
-      </td>        
+      </td>
 
       </tr>
 
@@ -117,14 +121,14 @@
           <div class="mb-3 visually-hidden w-0">
             <label for="id" class="form-label">id</label>
             <input type="text" class="form-control" formControlName="id" required>
-      
+
           </div>
           <div class="mb-3">
             <label for="name" class="form-label">Név</label>
             <input type="text" class="form-control" formControlName="name" required>
-      
+
           </div>
-      
+
           <label for="bname" class="form-label">Fajták</label>
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeBName($event)" formControlName="bname">
@@ -134,12 +138,12 @@
               </option>
             </select>
           </div>
-      
+
           <div class="mb-3">
             <label for="age" class="form-label">Kor</label>
             <input type="text" class="form-control" formControlName="age">
           </div>
-      
+
           <label for="gender" class="form-label">Neme</label>
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeGender($event)" formControlName="gender">
@@ -149,19 +153,19 @@
               </option>
             </select>
           </div>
-      
+
           <label for="shelters_id" class="form-label">Menhely</label>
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeShelter($event)" formControlName="shelters_id">
               <option value="">Válassz menhelyet: </option>
               <option *ngFor="let shelter of shelters" [ngValue]="shelter.id" value="{{shelter.shelter_name }}">
-      
+
                 {{shelter.shelter_name }}
               </option>
             </select>
           </div>
-      
-      
+
+
           <label for="neutered" class="form-label">Ivartalanított-e</label>
           <div class="input-group mb-3">
             <select class="form-select" (change)="changeNeutered($event)" formControlName="neutered">
@@ -171,8 +175,13 @@
               </option>
             </select>
           </div>
-      
-    
+          <label for="image" class="form-label">Kép</label>
+    <div class="input-group mb-3">
+		<input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="image" accept="image/jpeg, image/png, image/jpg">
+    </div>
+    <button type="submit" class="btn btn-primary">Hozzáad</button>
+
+
         </form>
       </div>
       <div class="modal-footer">
