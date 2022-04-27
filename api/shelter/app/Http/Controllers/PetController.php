@@ -18,6 +18,9 @@ class PetController extends BaseController
             ->join('species', 'breeds.species_id', '=', 'species.id')
             ->select('pets.id', 'name', 'bname', 'sname', 'age', 'gender', 'adopted', 'shelters_id', 'picture_path', 'neutered')
             ->get();
+        foreach($pets as $pet){
+            $pet->picture_path = asset($pet->picture_path);
+        }
         return $this->sendResponse($pets, 'Pets fetched');
     }
     public function show($id)
@@ -51,10 +54,10 @@ class PetController extends BaseController
         }
         $path = '';
         if ($request->hasFile('image')) {
-            $filePath = 'images/' . $request['name'] . '/';
+            $filePath = 'public/images/' . $request['name'] . '/';
             $extension = $request->file('image')->guessExtension();
             Storage::putFileAs($filePath, $request['image'], $request['name'] . '.' . $extension);
-            $path = 'images/' . $request['name'] . '/' . $request['name'] . '.' . $extension;
+            $path = 'storage/images/' . $request['name'] . '/' . $request['name'] . '.' . $extension;
         }
         $bname = $request['bname'];
         $breeds_id = DB::table('breeds')->select('id')->where('bname', '=', $bname)->get();
@@ -78,7 +81,7 @@ class PetController extends BaseController
     {
         $path = '';
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image') && $request['file'] != '') {
             $filePath = DB::table("pets")->select("picture_path")->where("id", "=", $id)->get();
             Storage::delete($filePath[0]->picture_path);
             $filePath = 'images/' . $request['name'] . '/';
@@ -107,7 +110,7 @@ class PetController extends BaseController
                 return $this->sendResponse($query, 'Pet not updated!');
             }
         } catch (\Throwable $th) {
-            return $this->sendError("Error in updation of pet", $th);
+            return $this->sendError("Error in updation of pet", $request->all());
         }
     }
     public function delete($id)
