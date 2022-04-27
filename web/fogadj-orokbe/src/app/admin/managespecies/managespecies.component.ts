@@ -9,7 +9,7 @@ import { SpecieInterface as Species} from 'src/app/shared/specie/specie-interfac
 })
 export class ManagespeciesComponent implements OnInit {
   newSpecieForm !: FormGroup;
-  updatespecieForm !: FormGroup;
+  updateSpecieForm !: FormGroup;
 
   species: Species[] = [];
   constructor(private specieService: SpecieService) {}
@@ -19,7 +19,7 @@ export class ManagespeciesComponent implements OnInit {
     this.newSpecieForm = new FormGroup({
       sname: new FormControl('')
     });
-    this.updatespecieForm = new FormGroup({
+    this.updateSpecieForm = new FormGroup({
       id: new FormControl(''),
       sname: new FormControl(''),
     });
@@ -37,15 +37,17 @@ export class ManagespeciesComponent implements OnInit {
     })
   }
   updateSpecie(){
-    let id = this.updatespecieForm.value.id;
-    let sname = this.updatespecieForm.value.sname;
+    let id = this.updateSpecieForm.value.id;
+    let sname = this.updateSpecieForm.value.sname;
+    console.log(id+" sname: "+sname);
+    
     this.specieService.updateSpecie(id,sname)
     .subscribe(res=>{
       if (res != 0) {
-        alert("Sikeres törlés");
+        alert("Sikeres módosítás");
         window.location.reload();
       } else {
-        alert("A törlés sikertelen!");
+        alert("A módosítás sikertelen!");
       }
     })
   }
@@ -67,6 +69,7 @@ export class ManagespeciesComponent implements OnInit {
     })
   }
   onEdit(specie: any) {
-    this.updatespecieForm.controls['sname'].setValue(specie.sname);
+    this.updateSpecieForm.controls['sname'].setValue(specie.sname);
+    this.updateSpecieForm.controls['id'].setValue(specie.id);
     }
 }
