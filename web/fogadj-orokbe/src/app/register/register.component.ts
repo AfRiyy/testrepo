@@ -63,8 +63,8 @@ export class RegisterComponent implements OnInit {
       console.log(res);
       if (res.token != 0) {
         alert("Sikeres regisztráció!");
-        localStorage.setItem('currentUser', 
-        JSON.stringify({token: res.token, name: res.name})
+        localStorage.setItem('currentUser',
+        JSON.stringify({token: res.token, name: res.name, id: res.id})
         );
         this.router.navigate(['main']);
       }else{
