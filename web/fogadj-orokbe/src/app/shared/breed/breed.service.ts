@@ -15,9 +15,11 @@ export class BreedService {
     let endpoint = 'breeds';
     return this.http.get<any>(this.host + endpoint)
   }
-  updateBreed(id:number,bname: string){
+  updateBreed(id:number,bname: string, species_id:number){
     let vData = {
+      id: id,
       bname: bname,
+      species_id:species_id
     }
     let data = JSON.stringify(vData);
 

@@ -82,12 +82,26 @@ export class ManagebreedsComponent implements OnInit {
 
   onEdit(breed: any) {
     this.updateBreedForm.controls['id'].setValue(breed.id);
-    this.updateBreedForm.controls['name'].setValue(breed.bname);
-    this.updateBreedForm.controls['bname'].setValue(breed.sname);
+    this.updateBreedForm.controls['bname'].setValue(breed.bname);
+    this.updateBreedForm.controls['sname'].setValue(breed.sname);
   }
 
   updateBreed(){
-
+    let id = this.updateBreedForm.value.id;
+    let species_id = this.updateBreedForm.value.sname;
+    let bname = this.updateBreedForm.value.bname;
+    console.log(id);
+    console.log(species_id);
+    console.log(bname);
+    this.breedService.updateBreed(id, bname, species_id)
+      .subscribe(res => {
+        if (res != 0) {
+          alert("Sikeres frissítés!");
+          window.location.reload();
+        } else {
+          alert("A frissítés sikertelen!");
+        }
+      })
   }
 
   deleteBreed(id:any){

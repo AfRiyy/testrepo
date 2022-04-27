@@ -72,7 +72,7 @@
         <div class="input-group mb-3">
             <select class="form-select" (change)="changeSName($event)" formControlName="sname">
                 <option value="">Válassz fajtát: </option>
-                <option *ngFor="let specie of species" [ngValue]="specie.sname">
+                <option *ngFor="let specie of species" [ngValue]="specie.id">
                     {{specie.sname}}
                 </option>
             </select>
